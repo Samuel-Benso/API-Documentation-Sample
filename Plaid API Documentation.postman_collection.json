@@ -1,0 +1,2271 @@
+{
+	"info": {
+		"_postman_id": "f08c30b3-97c2-490f-9435-e62fcadbe4ee",
+		"name": "Plaid API Documentation",
+		"description": "# **Introduction**\n\nThe **Plaid API** bridges the gap between financial data and applications, enabling you to securely connect user bank accounts and access financial insights. With endpoints designed for authentication, transactions, identity verification, account balances, and more, it supports creating seamless fintech experiences. Plaid’s tools help you retrieve real-time account data, initiate transfers, and evaluate financial risks, making it a versatile solution for building apps like budgeting tools, payment platforms, or loan underwriting systems.\n\nWhether you’re testing in the Sandbox environment or launching in Production, Plaid simplifies integration with user-friendly documentation and SDKs.\n\nBelow is an overview.\n\n---\n\n1. **Link Endpoints** manage public tokens to securely link user accounts. They include sandbox testing options for simulating account linking.\n    \n2. **Institution Endpoints** gives access to information about financial institutions supported by Plaid, including metadata and search capabilities, to enable dynamic institution selection for users.\n    \n3. **Accounts Endpoints** retrieves detailed account information, such as balances, ownership details, and account numbers. These endpoints are foundational for financial planning and payment applications.\n    \n4. **Transactions Endpoints** helps you fetch transaction history and insights for budgeting tools, fraud detection systems, and financial analysis software.\n    \n5. **Identity Endpoints** verifies user identity and retrieve account holder information, including advanced features like document uploads for additional verification.\n    \n6. **Auth Endpoints** obtains ACH routing and account numbers for payment processing. These endpoints support secure transfers and event tracking.\n    \n7. **Transfer Endpoints** handles ACH transfers, including initiating, managing, and tracking transfers. Event synchronization and reporting are supported for real-time monitoring and troubleshooting.\n    \n8. **Balance Endpoints** retrieves up-to-date balances for linked accounts, useful for payment validations and ensuring sufficient funds for transactions.\n    \n9. **Signal Endpoints** focus on fraud detection and prevention, these endpoints evaluate transaction risks, report decisions, and manage return scenarios.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "33783485"
+	},
+	"item": [
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "Retrieve auth data",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"client_id\": \"{{client_id}}\",\r\n  \"secret\": \"{{secret_key}}\",\r\n  \"access_token\": \"{{access_token}}\"\r\n\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://sandbox.plaid.com/auth/get",
+							"protocol": "https",
+							"host": [
+								"sandbox",
+								"plaid",
+								"com"
+							],
+							"path": [
+								"auth",
+								"get"
+							]
+						},
+						"description": "This endpoint retrieves the account and routing numbers associated with a financial institution item, allowing you to get account details that can be used for direct deposit, ACH transfers, or other financial transactions."
+					},
+					"response": [
+						{
+							"name": "Retrieve auth data",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"client_id\": \"{{client_id}}\",\r\n  \"secret\": \"{{secret_key}}\",\r\n  \"access_token\": \"{{access_token}}\"\r\n\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://sandbox.plaid.com/auth/get",
+									"protocol": "https",
+									"host": [
+										"sandbox",
+										"plaid",
+										"com"
+									],
+									"path": [
+										"auth",
+										"get"
+									]
+								}
+							},
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": null
+						}
+					]
+				},
+				{
+					"name": "List bank transfer events",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"client_id\": \"{{client_id}}\",\r\n  \"secret\": \"{{secret_key}}\",\r\n  \"start_date\": \"2024-01-01T00:00:00Z\",\r\n  \"end_date\": \"2024-01-31T23:59:59Z\",\r\n  \"event_types\": [\"posted\", \"failed\"]\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base-url}}/bank_transfer/event/list",
+							"host": [
+								"{{base-url}}"
+							],
+							"path": [
+								"bank_transfer",
+								"event",
+								"list"
+							]
+						},
+						"description": "This endpoint retrieves a list of bank transfer events. These events track activities like initiated transfers, completed transfers, and failed transfers. It helps you monitor the status of bank transfers associated with your Plaid account."
+					},
+					"response": [
+						{
+							"name": "List bank transfer events",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"client_id\": \"{{client_id}}\",\r\n  \"secret\": \"{{secret_key}}\",\r\n  \"start_date\": \"2024-01-01T00:00:00Z\",\r\n  \"end_date\": \"2024-01-31T23:59:59Z\",\r\n  \"event_types\": [\"posted\", \"failed\"]\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base-url}}/bank_transfer/event/list",
+									"host": [
+										"{{base-url}}"
+									],
+									"path": [
+										"bank_transfer",
+										"event",
+										"list"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 25 Nov 2024 09:59:48 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "91"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "content-encoding",
+									"value": "gzip"
+								},
+								{
+									"key": "plaid-version",
+									"value": "2020-09-14"
+								},
+								{
+									"key": "vary",
+									"value": "Accept-Encoding"
+								},
+								{
+									"key": "Strict-Transport-Security",
+									"value": "max-age=31536000; includeSubDomains; preload"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "1; mode=block"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"bank_transfer_events\": null,\n    \"request_id\": \"QseAsJJF7UaIK1q\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Sync bank transfer events",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"client_id\": \"{{client_id}}\",\r\n  \"secret\": \"{{secret_key}}\",\r\n  \"after_id\": 12345\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base-url}}/bank_transfer/event/sync",
+							"host": [
+								"{{base-url}}"
+							],
+							"path": [
+								"bank_transfer",
+								"event",
+								"sync"
+							]
+						},
+						"description": "This endpoint retrieves the latest bank transfer events since your last request. This helps you stay updated without re-fetching the full event history. The sync will return events that occurred after the `after_id`."
+					},
+					"response": [
+						{
+							"name": "Sync bank transfer events",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"client_id\": \"{{client_id}}\",\r\n  \"secret\": \"{{secret_key}}\",\r\n  \"after_id\": 12345\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base-url}}/bank_transfer/event/sync",
+									"host": [
+										"{{base-url}}"
+									],
+									"path": [
+										"bank_transfer",
+										"event",
+										"sync"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 25 Nov 2024 10:01:08 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "89"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "content-encoding",
+									"value": "gzip"
+								},
+								{
+									"key": "plaid-version",
+									"value": "2020-09-14"
+								},
+								{
+									"key": "vary",
+									"value": "Accept-Encoding"
+								},
+								{
+									"key": "Strict-Transport-Security",
+									"value": "max-age=31536000; includeSubDomains; preload"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "1; mode=block"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"bank_transfer_events\": [],\n    \"request_id\": \"ctthJ3BJT0D6vbn\"\n}"
+						}
+					]
+				},
+				{
+					"name": "https://sandbox.plaid.com/auth/get",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"client_id\": \"{{client_id}}\",\r\n  \"secret\": \"{{secret_key}}\",\r\n  \"access_token\": \"{{access_token}}\"\r\n\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://sandbox.plaid.com/auth/get",
+							"protocol": "https",
+							"host": [
+								"sandbox",
+								"plaid",
+								"com"
+							],
+							"path": [
+								"auth",
+								"get"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "https://sandbox.plaid.com/auth/get",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"client_id\": \"{{client_id}}\",\r\n  \"secret\": \"{{secret_key}}\",\r\n  \"access_token\": \"{{access_token}}\"\r\n\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://sandbox.plaid.com/auth/get",
+									"protocol": "https",
+									"host": [
+										"sandbox",
+										"plaid",
+										"com"
+									],
+									"path": [
+										"auth",
+										"get"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 25 Nov 2024 09:51:49 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "1597"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "content-encoding",
+									"value": "gzip"
+								},
+								{
+									"key": "plaid-version",
+									"value": "2020-09-14"
+								},
+								{
+									"key": "vary",
+									"value": "Accept-Encoding"
+								},
+								{
+									"key": "Strict-Transport-Security",
+									"value": "max-age=31536000; includeSubDomains; preload"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "1; mode=block"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"accounts\": [\n        {\n            \"account_id\": \"yBryNwlqqpUGwqlVeJElUgkAz7PV7of46ovnJ\",\n            \"balances\": {\n                \"available\": 100,\n                \"current\": 110,\n                \"iso_currency_code\": \"USD\",\n                \"limit\": null,\n                \"unofficial_currency_code\": null\n            },\n            \"mask\": \"0000\",\n            \"name\": \"Plaid Checking\",\n            \"official_name\": \"Plaid Gold Standard 0% Interest Checking\",\n            \"persistent_account_id\": \"8cfb8beb89b774ee43b090625f0d61d0814322b43bff984eaf60386e\",\n            \"subtype\": \"checking\",\n            \"type\": \"depository\"\n        },\n        {\n            \"account_id\": \"9B6D1JnrrZUkPwd6bX7dUG4gynApnqs4xkJyX\",\n            \"balances\": {\n                \"available\": 200,\n                \"current\": 210,\n                \"iso_currency_code\": \"USD\",\n                \"limit\": null,\n                \"unofficial_currency_code\": null\n            },\n            \"mask\": \"1111\",\n            \"name\": \"Plaid Saving\",\n            \"official_name\": \"Plaid Silver Standard 0.1% Interest Saving\",\n            \"persistent_account_id\": \"211a4e5d8361a3afb7a3886362198c7306e00a313b5aa944c20d34b6\",\n            \"subtype\": \"savings\",\n            \"type\": \"depository\"\n        },\n        {\n            \"account_id\": \"vKlydvVXXkCmvkLaM61LTVlrM7bw7duq6g7ey\",\n            \"balances\": {\n                \"available\": null,\n                \"current\": 1000,\n                \"iso_currency_code\": \"USD\",\n                \"limit\": null,\n                \"unofficial_currency_code\": null\n            },\n            \"mask\": \"2222\",\n            \"name\": \"Plaid CD\",\n            \"official_name\": \"Plaid Bronze Standard 0.2% Interest CD\",\n            \"persistent_account_id\": \"2a01484e1b5ef0b54fbcb89658b2764529bbec94a16f7b95481280a7\",\n            \"subtype\": \"cd\",\n            \"type\": \"depository\"\n        },\n        {\n            \"account_id\": \"L8P6KJZll9TyG9r3zVnrhvbz8KkaKEtkjqzKD\",\n            \"balances\": {\n                \"available\": null,\n                \"current\": 410,\n                \"iso_currency_code\": \"USD\",\n                \"limit\": 2000,\n                \"unofficial_currency_code\": null\n            },\n            \"mask\": \"3333\",\n            \"name\": \"Plaid Credit Card\",\n            \"official_name\": \"Plaid Diamond 12.5% APR Interest Credit Card\",\n            \"subtype\": \"credit card\",\n            \"type\": \"credit\"\n        },\n        {\n            \"account_id\": \"pGAZKvVwwecG8DwnXlVwU7bNZVxyVXtpobmo5\",\n            \"balances\": {\n                \"available\": 43200,\n                \"current\": 43200,\n                \"iso_currency_code\": \"USD\",\n                \"limit\": null,\n                \"unofficial_currency_code\": null\n            },\n            \"mask\": \"4444\",\n            \"name\": \"Plaid Money Market\",\n            \"official_name\": \"Plaid Platinum Standard 1.85% Interest Money Market\",\n            \"subtype\": \"money market\",\n            \"type\": \"depository\"\n        },\n        {\n            \"account_id\": \"oAyQqvVEE7fj81QdgxEQIDLnd6bj69foq1wqg\",\n            \"balances\": {\n                \"available\": null,\n                \"current\": 320.76,\n                \"iso_currency_code\": \"USD\",\n                \"limit\": null,\n                \"unofficial_currency_code\": null\n            },\n            \"mask\": \"5555\",\n            \"name\": \"Plaid IRA\",\n            \"official_name\": null,\n            \"subtype\": \"ira\",\n            \"type\": \"investment\"\n        },\n        {\n            \"account_id\": \"g17dnoV993FBVbXl7WnXfrykonVGneiE8Pk8W\",\n            \"balances\": {\n                \"available\": null,\n                \"current\": 23631.9805,\n                \"iso_currency_code\": \"USD\",\n                \"limit\": null,\n                \"unofficial_currency_code\": null\n            },\n            \"mask\": \"6666\",\n            \"name\": \"Plaid 401k\",\n            \"official_name\": null,\n            \"subtype\": \"401k\",\n            \"type\": \"investment\"\n        },\n        {\n            \"account_id\": \"8zZAMgGKKQhvNnxj1gJxf1jDJndbnXsW3gE3G\",\n            \"balances\": {\n                \"available\": null,\n                \"current\": 65262,\n                \"iso_currency_code\": \"USD\",\n                \"limit\": null,\n                \"unofficial_currency_code\": null\n            },\n            \"mask\": \"7777\",\n            \"name\": \"Plaid Student Loan\",\n            \"official_name\": null,\n            \"subtype\": \"student\",\n            \"type\": \"loan\"\n        },\n        {\n            \"account_id\": \"EZ3bmJ4ee6UbaVWd1XxWhGZdBWyaWjs4xrdxP\",\n            \"balances\": {\n                \"available\": null,\n                \"current\": 56302.06,\n                \"iso_currency_code\": \"USD\",\n                \"limit\": null,\n                \"unofficial_currency_code\": null\n            },\n            \"mask\": \"8888\",\n            \"name\": \"Plaid Mortgage\",\n            \"official_name\": null,\n            \"subtype\": \"mortgage\",\n            \"type\": \"loan\"\n        },\n        {\n            \"account_id\": \"WrkVj3GNN9SBXvjlVPxjfoWaAGBKGXT6ZXaZK\",\n            \"balances\": {\n                \"available\": 6009,\n                \"current\": 6009,\n                \"iso_currency_code\": \"USD\",\n                \"limit\": null,\n                \"unofficial_currency_code\": null\n            },\n            \"mask\": \"9001\",\n            \"name\": \"Plaid HSA\",\n            \"official_name\": \"Plaid Cares Health Savings Account\",\n            \"subtype\": \"hsa\",\n            \"type\": \"depository\"\n        },\n        {\n            \"account_id\": \"AjK6AJ3NNmUyl4oLkGrohjAzwW8QWgf9raerA\",\n            \"balances\": {\n                \"available\": 12060,\n                \"current\": 12060,\n                \"iso_currency_code\": \"USD\",\n                \"limit\": null,\n                \"unofficial_currency_code\": null\n            },\n            \"mask\": \"9002\",\n            \"name\": \"Plaid Cash Management\",\n            \"official_name\": \"Plaid Growth Cash Management\",\n            \"subtype\": \"cash management\",\n            \"type\": \"depository\"\n        },\n        {\n            \"account_id\": \"G1dA9JPZZmFXdVDy4g9DSeKjaA83AXT6MqjM3\",\n            \"balances\": {\n                \"available\": 4980,\n                \"current\": 5020,\n                \"iso_currency_code\": \"USD\",\n                \"limit\": 10000,\n                \"unofficial_currency_code\": null\n            },\n            \"mask\": \"9999\",\n            \"name\": \"Plaid Business Credit Card\",\n            \"official_name\": \"Plaid Platinum Small Business Credit Card\",\n            \"subtype\": \"credit card\",\n            \"type\": \"credit\"\n        }\n    ],\n    \"item\": {\n        \"available_products\": [\n            \"assets\",\n            \"balance\",\n            \"signal\",\n            \"income_verification\",\n            \"investments\",\n            \"investments_auth\",\n            \"liabilities\",\n            \"recurring_transactions\",\n            \"statements\",\n            \"transfer\"\n        ],\n        \"billed_products\": [\n            \"auth\",\n            \"identity\",\n            \"identity_match\",\n            \"transactions\"\n        ],\n        \"consent_expiration_time\": null,\n        \"error\": null,\n        \"institution_id\": \"ins_109508\",\n        \"institution_name\": \"First Platypus Bank\",\n        \"item_id\": \"qnAMrvVwwQUev6kL5lwkT8XZyP1J9zcdNq7ZM\",\n        \"products\": [\n            \"auth\",\n            \"signal\",\n            \"identity\",\n            \"identity_match\",\n            \"transactions\"\n        ],\n        \"update_type\": \"background\",\n        \"webhook\": \"\"\n    },\n    \"numbers\": {\n        \"ach\": [\n            {\n                \"account\": \"1111222233330000\",\n                \"account_id\": \"yBryNwlqqpUGwqlVeJElUgkAz7PV7of46ovnJ\",\n                \"routing\": \"011401533\",\n                \"wire_routing\": \"021000021\"\n            },\n            {\n                \"account\": \"1111222233331111\",\n                \"account_id\": \"9B6D1JnrrZUkPwd6bX7dUG4gynApnqs4xkJyX\",\n                \"routing\": \"011401533\",\n                \"wire_routing\": \"021000021\"\n            }\n        ],\n        \"bacs\": [],\n        \"eft\": [],\n        \"international\": []\n    },\n    \"request_id\": \"9gOpc7uA5V5kwvW\"\n}"
+						}
+					]
+				}
+			],
+			"description": "The **Auth endpoints** enable you to access bank account details necessary for processing payments and verifying account ownership. These endpoints help retrieve critical information, such as routing numbers and account numbers, which are essential for ACH transfers and similar transactions."
+		},
+		{
+			"name": "Accounts",
+			"item": [
+				{
+					"name": "Get Accounts",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{accessToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"client_id\": \"673f1c720203ee001a70d45b\",\r\n  \"secret\": \"f32f7cf0956ae84f62410166109711\",\r\n  \"access_token\": \"access-sandbox-d9209dab-ac4b-4cf5-9edd-c2e36f2b4f60\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://sandbox.plaid.com/accounts/get",
+							"protocol": "https",
+							"host": [
+								"sandbox",
+								"plaid",
+								"com"
+							],
+							"path": [
+								"accounts",
+								"get"
+							]
+						},
+						"description": "The `/accounts/get` endpoint allows you to retrieve details about the accounts linked to a user's Plaid integration. It provides information such as:\n\n- Account names\n    \n- Types (e.g., checking, savings)\n    \n- Balances (current and available)\n    \n\nThis is a foundational endpoint that helps you understand what accounts are available for further operations, such as transactions or balance checks."
+					},
+					"response": [
+						{
+							"name": "New Request",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"client_id\": \"673f1c720203ee001a70d45b\",\r\n  \"secret\": \"f32f7cf0956ae84f62410166109711\",\r\n  \"access_token\": \"access-sandbox-d9209dab-ac4b-4cf5-9edd-c2e36f2b4f60\"\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://sandbox.plaid.com/accounts/get",
+									"protocol": "https",
+									"host": [
+										"sandbox",
+										"plaid",
+										"com"
+									],
+									"path": [
+										"accounts",
+										"get"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 21 Nov 2024 18:39:21 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "1488"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "content-encoding",
+									"value": "gzip"
+								},
+								{
+									"key": "plaid-version",
+									"value": "2020-09-14"
+								},
+								{
+									"key": "vary",
+									"value": "Accept-Encoding"
+								},
+								{
+									"key": "Strict-Transport-Security",
+									"value": "max-age=31536000; includeSubDomains; preload"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "1; mode=block"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"accounts\": [\n        {\n            \"account_id\": \"yBryNwlqqpUGwqlVeJElUgkAz7PV7of46ovnJ\",\n            \"balances\": {\n                \"available\": 100,\n                \"current\": 110,\n                \"iso_currency_code\": \"USD\",\n                \"limit\": null,\n                \"unofficial_currency_code\": null\n            },\n            \"mask\": \"0000\",\n            \"name\": \"Plaid Checking\",\n            \"official_name\": \"Plaid Gold Standard 0% Interest Checking\",\n            \"persistent_account_id\": \"8cfb8beb89b774ee43b090625f0d61d0814322b43bff984eaf60386e\",\n            \"subtype\": \"checking\",\n            \"type\": \"depository\"\n        },\n        {\n            \"account_id\": \"9B6D1JnrrZUkPwd6bX7dUG4gynApnqs4xkJyX\",\n            \"balances\": {\n                \"available\": 200,\n                \"current\": 210,\n                \"iso_currency_code\": \"USD\",\n                \"limit\": null,\n                \"unofficial_currency_code\": null\n            },\n            \"mask\": \"1111\",\n            \"name\": \"Plaid Saving\",\n            \"official_name\": \"Plaid Silver Standard 0.1% Interest Saving\",\n            \"persistent_account_id\": \"211a4e5d8361a3afb7a3886362198c7306e00a313b5aa944c20d34b6\",\n            \"subtype\": \"savings\",\n            \"type\": \"depository\"\n        },\n        {\n            \"account_id\": \"vKlydvVXXkCmvkLaM61LTVlrM7bw7duq6g7ey\",\n            \"balances\": {\n                \"available\": null,\n                \"current\": 1000,\n                \"iso_currency_code\": \"USD\",\n                \"limit\": null,\n                \"unofficial_currency_code\": null\n            },\n            \"mask\": \"2222\",\n            \"name\": \"Plaid CD\",\n            \"official_name\": \"Plaid Bronze Standard 0.2% Interest CD\",\n            \"persistent_account_id\": \"2a01484e1b5ef0b54fbcb89658b2764529bbec94a16f7b95481280a7\",\n            \"subtype\": \"cd\",\n            \"type\": \"depository\"\n        },\n        {\n            \"account_id\": \"L8P6KJZll9TyG9r3zVnrhvbz8KkaKEtkjqzKD\",\n            \"balances\": {\n                \"available\": null,\n                \"current\": 410,\n                \"iso_currency_code\": \"USD\",\n                \"limit\": 2000,\n                \"unofficial_currency_code\": null\n            },\n            \"mask\": \"3333\",\n            \"name\": \"Plaid Credit Card\",\n            \"official_name\": \"Plaid Diamond 12.5% APR Interest Credit Card\",\n            \"subtype\": \"credit card\",\n            \"type\": \"credit\"\n        },\n        {\n            \"account_id\": \"pGAZKvVwwecG8DwnXlVwU7bNZVxyVXtpobmo5\",\n            \"balances\": {\n                \"available\": 43200,\n                \"current\": 43200,\n                \"iso_currency_code\": \"USD\",\n                \"limit\": null,\n                \"unofficial_currency_code\": null\n            },\n            \"mask\": \"4444\",\n            \"name\": \"Plaid Money Market\",\n            \"official_name\": \"Plaid Platinum Standard 1.85% Interest Money Market\",\n            \"subtype\": \"money market\",\n            \"type\": \"depository\"\n        },\n        {\n            \"account_id\": \"oAyQqvVEE7fj81QdgxEQIDLnd6bj69foq1wqg\",\n            \"balances\": {\n                \"available\": null,\n                \"current\": 320.76,\n                \"iso_currency_code\": \"USD\",\n                \"limit\": null,\n                \"unofficial_currency_code\": null\n            },\n            \"mask\": \"5555\",\n            \"name\": \"Plaid IRA\",\n            \"official_name\": null,\n            \"subtype\": \"ira\",\n            \"type\": \"investment\"\n        },\n        {\n            \"account_id\": \"g17dnoV993FBVbXl7WnXfrykonVGneiE8Pk8W\",\n            \"balances\": {\n                \"available\": null,\n                \"current\": 23631.9805,\n                \"iso_currency_code\": \"USD\",\n                \"limit\": null,\n                \"unofficial_currency_code\": null\n            },\n            \"mask\": \"6666\",\n            \"name\": \"Plaid 401k\",\n            \"official_name\": null,\n            \"subtype\": \"401k\",\n            \"type\": \"investment\"\n        },\n        {\n            \"account_id\": \"8zZAMgGKKQhvNnxj1gJxf1jDJndbnXsW3gE3G\",\n            \"balances\": {\n                \"available\": null,\n                \"current\": 65262,\n                \"iso_currency_code\": \"USD\",\n                \"limit\": null,\n                \"unofficial_currency_code\": null\n            },\n            \"mask\": \"7777\",\n            \"name\": \"Plaid Student Loan\",\n            \"official_name\": null,\n            \"subtype\": \"student\",\n            \"type\": \"loan\"\n        },\n        {\n            \"account_id\": \"EZ3bmJ4ee6UbaVWd1XxWhGZdBWyaWjs4xrdxP\",\n            \"balances\": {\n                \"available\": null,\n                \"current\": 56302.06,\n                \"iso_currency_code\": \"USD\",\n                \"limit\": null,\n                \"unofficial_currency_code\": null\n            },\n            \"mask\": \"8888\",\n            \"name\": \"Plaid Mortgage\",\n            \"official_name\": null,\n            \"subtype\": \"mortgage\",\n            \"type\": \"loan\"\n        },\n        {\n            \"account_id\": \"WrkVj3GNN9SBXvjlVPxjfoWaAGBKGXT6ZXaZK\",\n            \"balances\": {\n                \"available\": 6009,\n                \"current\": 6009,\n                \"iso_currency_code\": \"USD\",\n                \"limit\": null,\n                \"unofficial_currency_code\": null\n            },\n            \"mask\": \"9001\",\n            \"name\": \"Plaid HSA\",\n            \"official_name\": \"Plaid Cares Health Savings Account\",\n            \"subtype\": \"hsa\",\n            \"type\": \"depository\"\n        },\n        {\n            \"account_id\": \"AjK6AJ3NNmUyl4oLkGrohjAzwW8QWgf9raerA\",\n            \"balances\": {\n                \"available\": 12060,\n                \"current\": 12060,\n                \"iso_currency_code\": \"USD\",\n                \"limit\": null,\n                \"unofficial_currency_code\": null\n            },\n            \"mask\": \"9002\",\n            \"name\": \"Plaid Cash Management\",\n            \"official_name\": \"Plaid Growth Cash Management\",\n            \"subtype\": \"cash management\",\n            \"type\": \"depository\"\n        },\n        {\n            \"account_id\": \"G1dA9JPZZmFXdVDy4g9DSeKjaA83AXT6MqjM3\",\n            \"balances\": {\n                \"available\": 4980,\n                \"current\": 5020,\n                \"iso_currency_code\": \"USD\",\n                \"limit\": 10000,\n                \"unofficial_currency_code\": null\n            },\n            \"mask\": \"9999\",\n            \"name\": \"Plaid Business Credit Card\",\n            \"official_name\": \"Plaid Platinum Small Business Credit Card\",\n            \"subtype\": \"credit card\",\n            \"type\": \"credit\"\n        }\n    ],\n    \"item\": {\n        \"available_products\": [\n            \"assets\",\n            \"balance\",\n            \"signal\",\n            \"identity\",\n            \"identity_match\",\n            \"income_verification\",\n            \"investments\",\n            \"investments_auth\",\n            \"liabilities\",\n            \"recurring_transactions\",\n            \"statements\",\n            \"transactions\",\n            \"transfer\"\n        ],\n        \"billed_products\": [\n            \"auth\"\n        ],\n        \"consent_expiration_time\": null,\n        \"error\": null,\n        \"institution_id\": \"ins_109508\",\n        \"institution_name\": \"First Platypus Bank\",\n        \"item_id\": \"qnAMrvVwwQUev6kL5lwkT8XZyP1J9zcdNq7ZM\",\n        \"products\": [\n            \"auth\"\n        ],\n        \"update_type\": \"background\",\n        \"webhook\": \"\"\n    },\n    \"request_id\": \"E46FrX127UpR0G0\"\n}"
+						}
+					]
+				}
+			],
+			"description": "Accounts represent the financial accounts linked by a user through Plaid. These can include checking accounts, savings accounts, credit cards, investment accounts, and more. Each account is tied to an institution (e.g., a bank or credit union) and includes detailed information such as balances, account type, and account ownership."
+		},
+		{
+			"name": "Signal",
+			"item": [
+				{
+					"name": "Evaluate a planned ACH transaction",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"client_id\": \"{{client_id}}\",\r\n  \"secret\": \"{{secret_key}}\",\r\n  \"access_token\": \"{{access_token}}\",\r\n  \"account_id\": \"{{account_id}}\",\r\n  \"amount\": 250.00,\r\n  \"client_transaction_id\": \"txn_12345\",\r\n  \"user_present\": true\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base-url}}/signal/evaluate",
+							"host": [
+								"{{base-url}}"
+							],
+							"path": [
+								"signal",
+								"evaluate"
+							]
+						},
+						"description": "This endpoint is used to assess the likelihood of a financial transaction being fraudulent. By analyzing transaction data, Plaid provides a fraud risk score to help you make informed decisions."
+					},
+					"response": [
+						{
+							"name": "Evaluate a planned ACH transaction",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"client_id\": \"{{client_id}}\",\r\n  \"secret\": \"{{secret_key}}\",\r\n  \"access_token\": \"{{access_token}}\",\r\n  \"account_id\": \"{{account_id}}\",\r\n  \"amount\": 250.00,\r\n  \"client_transaction_id\": \"txn_12345\",\r\n  \"user_present\": true\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base-url}}/signal/evaluate",
+									"host": [
+										"{{base-url}}"
+									],
+									"path": [
+										"signal",
+										"evaluate"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 25 Nov 2024 10:05:23 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "1088"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "content-encoding",
+									"value": "gzip"
+								},
+								{
+									"key": "plaid-version",
+									"value": "2020-09-14"
+								},
+								{
+									"key": "vary",
+									"value": "Accept-Encoding"
+								},
+								{
+									"key": "Strict-Transport-Security",
+									"value": "max-age=31536000; includeSubDomains; preload"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "1; mode=block"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"core_attributes\": {\n        \"address_change_count_28d\": 2,\n        \"address_change_count_90d\": 2,\n        \"available_balance\": 4760.939862556579,\n        \"balance_last_updated\": \"2024-11-24T23:33:19Z\",\n        \"credit_transactions_count_10d\": 0,\n        \"credit_transactions_count_30d\": 0,\n        \"credit_transactions_count_60d\": 2,\n        \"credit_transactions_count_90d\": 6,\n        \"current_balance\": 2708.1204122597046,\n        \"days_since_account_opening\": 2170,\n        \"days_since_first_plaid_connection\": 736,\n        \"days_with_negative_balance_count_90d\": 3,\n        \"debit_transactions_count_10d\": 3,\n        \"debit_transactions_count_30d\": 3,\n        \"debit_transactions_count_60d\": 7,\n        \"debit_transactions_count_90d\": 10,\n        \"distinct_ip_addresses_count_30d\": 0,\n        \"distinct_ip_addresses_count_3d\": 1,\n        \"distinct_ip_addresses_count_7d\": 0,\n        \"distinct_ip_addresses_count_90d\": 1,\n        \"distinct_ssl_tls_connection_sessions_count_30d\": 1,\n        \"distinct_ssl_tls_connection_sessions_count_3d\": 0,\n        \"distinct_ssl_tls_connection_sessions_count_7d\": 1,\n        \"distinct_ssl_tls_connection_sessions_count_90d\": 0,\n        \"distinct_user_agents_count_30d\": 0,\n        \"distinct_user_agents_count_3d\": 0,\n        \"distinct_user_agents_count_7d\": 0,\n        \"distinct_user_agents_count_90d\": 1,\n        \"email_change_count_28d\": 0,\n        \"email_change_count_90d\": 1,\n        \"failed_plaid_non_oauth_authentication_attempts_count_30d\": 7,\n        \"failed_plaid_non_oauth_authentication_attempts_count_3d\": 3,\n        \"failed_plaid_non_oauth_authentication_attempts_count_7d\": 6,\n        \"is_account_closed\": false,\n        \"is_account_frozen_or_restricted\": false,\n        \"is_savings_or_money_market_account\": false,\n        \"nsf_overdraft_transactions_count_30d\": 18,\n        \"nsf_overdraft_transactions_count_60d\": 13,\n        \"nsf_overdraft_transactions_count_7d\": 11,\n        \"nsf_overdraft_transactions_count_90d\": 17,\n        \"p10_eod_balance_30d\": 1667.3348272710787,\n        \"p10_eod_balance_31d_to_60d\": 816.0083503193882,\n        \"p10_eod_balance_60d\": 1963.4644933360423,\n        \"p10_eod_balance_61d_to_90d\": 1967.595540340783,\n        \"p10_eod_balance_90d\": 2431.6707977594538,\n        \"p50_credit_transactions_amount_28d\": 1593.832334227057,\n        \"p50_debit_transactions_amount_28d\": 1676.206407839056,\n        \"p50_eod_balance_30d\": 8742.32413549373,\n        \"p50_eod_balance_31d_to_60d\": 5594.985085718391,\n        \"p50_eod_balance_60d\": 7398.272828864165,\n        \"p50_eod_balance_61d_to_90d\": 7502.817388401503,\n        \"p50_eod_balance_90d\": 8904.412104929164,\n        \"p90_eod_balance_30d\": 13835.531816233244,\n        \"p90_eod_balance_31d_to_60d\": 20848.180503563213,\n        \"p90_eod_balance_60d\": 16214.40325307724,\n        \"p90_eod_balance_61d_to_90d\": 23150.51213796048,\n        \"p90_eod_balance_90d\": 15170.092034629974,\n        \"p95_credit_transactions_amount_28d\": 4472.052318392096,\n        \"p95_debit_transactions_amount_28d\": 4119.042729202309,\n        \"phone_change_count_28d\": 1,\n        \"phone_change_count_90d\": 3,\n        \"plaid_connections_count_30d\": 0,\n        \"plaid_connections_count_7d\": 0,\n        \"plaid_non_oauth_authentication_attempts_count_30d\": 2,\n        \"plaid_non_oauth_authentication_attempts_count_3d\": 1,\n        \"plaid_non_oauth_authentication_attempts_count_7d\": 1,\n        \"total_credit_transactions_amount_10d\": 475.90168124183486,\n        \"total_credit_transactions_amount_30d\": 144.7497079069733,\n        \"total_credit_transactions_amount_60d\": 794.0622128421335,\n        \"total_credit_transactions_amount_90d\": 321.1761581767054,\n        \"total_debit_transactions_amount_10d\": 608.6201588859559,\n        \"total_debit_transactions_amount_30d\": 604.6717405346974,\n        \"total_debit_transactions_amount_60d\": 163.25641044933988,\n        \"total_debit_transactions_amount_90d\": 188.71543670268935,\n        \"total_plaid_connections_count\": 1,\n        \"transactions_last_updated\": \"2024-11-24T23:33:19Z\",\n        \"unauthorized_transactions_count_30d\": 17,\n        \"unauthorized_transactions_count_60d\": 8,\n        \"unauthorized_transactions_count_7d\": 10,\n        \"unauthorized_transactions_count_90d\": 7\n    },\n    \"request_id\": \"758HyC730VofpAe\",\n    \"scores\": {\n        \"bank_initiated_return_risk\": {\n            \"risk_tier\": 4,\n            \"score\": 51\n        },\n        \"customer_initiated_return_risk\": {\n            \"risk_tier\": 4,\n            \"score\": 31\n        }\n    },\n    \"warnings\": []\n}"
+						}
+					]
+				},
+				{
+					"name": "Verify transaction status",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"client_id\": \"{{client_id}}\",\r\n  \"secret\": \"{{secret_key}}\",\r\n  \"client_transaction_id\": \"txn_12345\",\r\n  \"initiated\": true\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base-url}}/signal/decision/report",
+							"host": [
+								"{{base-url}}"
+							],
+							"path": [
+								"signal",
+								"decision",
+								"report"
+							]
+						},
+						"description": "The endpoint allows you to report the decision you made on a transaction after receiving the evaluation from the `/signal/evaluate` endpoint. This helps Plaid improve its fraud detection algorithms by learning from real-world decisions."
+					},
+					"response": [
+						{
+							"name": "Verify transaction status",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"client_id\": \"{{client_id}}\",\r\n  \"secret\": \"{{secret_key}}\",\r\n  \"client_transaction_id\": \"txn_12345\",\r\n  \"initiated\": true\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base-url}}/signal/decision/report",
+									"host": [
+										"{{base-url}}"
+									],
+									"path": [
+										"signal",
+										"decision",
+										"report"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 25 Nov 2024 10:05:43 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "61"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "content-encoding",
+									"value": "gzip"
+								},
+								{
+									"key": "plaid-version",
+									"value": "2020-09-14"
+								},
+								{
+									"key": "vary",
+									"value": "Accept-Encoding"
+								},
+								{
+									"key": "Strict-Transport-Security",
+									"value": "max-age=31536000; includeSubDomains; preload"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "1; mode=block"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"request_id\": \"xQNoxadZ677eha4\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Report failed ACH",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"client_id\": \"{{client_id}}\",\r\n  \"secret\": \"{{secret_key}}\",\r\n  \"client_transaction_id\": \"txn_56789\",\r\n  \"return_code\": \"R01\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base-url}}/signal/return/report",
+							"host": [
+								"{{base-url}}"
+							],
+							"path": [
+								"signal",
+								"return",
+								"report"
+							]
+						},
+						"description": "This endpoint allows you to report details about returned (failed) ACH transactions, including the reason for the failure (return code). This provides Plaid with feedback to enhance its fraud risk evaluation for future transactions."
+					},
+					"response": [
+						{
+							"name": "Report failed ACH",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"client_id\": \"{{client_id}}\",\r\n  \"secret\": \"{{secret_key}}\",\r\n  \"client_transaction_id\": \"txn_56789\",\r\n  \"return_code\": \"R01\"\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base-url}}/signal/return/report",
+									"host": [
+										"{{base-url}}"
+									],
+									"path": [
+										"signal",
+										"return",
+										"report"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 25 Nov 2024 10:06:03 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "61"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "content-encoding",
+									"value": "gzip"
+								},
+								{
+									"key": "plaid-version",
+									"value": "2020-09-14"
+								},
+								{
+									"key": "vary",
+									"value": "Accept-Encoding"
+								},
+								{
+									"key": "Strict-Transport-Security",
+									"value": "max-age=31536000; includeSubDomains; preload"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "1; mode=block"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"request_id\": \"4CKQmgxnIrTizms\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Generate client transaction ID",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"content-type": true
+						}
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"client_id\": \"{{client_id}}\",\r\n  \"secret\": \"{{secret_key}}\",\r\n  \"access_token\": \"{{access_token}}\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base-url}}/signal/prepare",
+							"host": [
+								"{{base-url}}"
+							],
+							"path": [
+								"signal",
+								"prepare"
+							]
+						},
+						"description": "This endpoint sets up your ACH transaction for evaluation. It generates a `client_transaction_id`, which ensures all Signal operations are tied to a specific transaction for detailed analysis and reporting."
+					},
+					"response": [
+						{
+							"name": "Generate client transaction ID",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"client_id\": \"{{client_id}}\",\r\n  \"secret\": \"{{secret_key}}\",\r\n  \"access_token\": \"{{access_token}}\"\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base-url}}/signal/prepare",
+									"host": [
+										"{{base-url}}"
+									],
+									"path": [
+										"signal",
+										"prepare"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 25 Nov 2024 10:06:22 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "61"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "content-encoding",
+									"value": "gzip"
+								},
+								{
+									"key": "plaid-version",
+									"value": "2020-09-14"
+								},
+								{
+									"key": "vary",
+									"value": "Accept-Encoding"
+								},
+								{
+									"key": "Strict-Transport-Security",
+									"value": "max-age=31536000; includeSubDomains; preload"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "1; mode=block"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"request_id\": \"VIGbhHLnnvs7RsY\"\n}"
+						}
+					]
+				}
+			],
+			"description": "Signal endpoints enable you to evaluate transactions, report outcomes, and improve decision-making accuracy. They are ideal for businesses seeking to enhance transaction reliability and reduce losses in ACH payment workflows."
+		},
+		{
+			"name": "Link",
+			"item": [
+				{
+					"name": "Create Public Token",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"institution_id\": \"ins_109508\",\r\n  \"initial_products\": [\"auth\"],\r\n  \"client_id\": \"673f1c720203ee001a70d45b\",\r\n  \"secret\": \"f32f7cf0956ae84f62410166109711\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://sandbox.plaid.com/sandbox/public_token/create",
+							"protocol": "https",
+							"host": [
+								"sandbox",
+								"plaid",
+								"com"
+							],
+							"path": [
+								"sandbox",
+								"public_token",
+								"create"
+							]
+						},
+						"description": "This endpoint allows you to generate a public token, which is a short-lived, single-use token required to initialize Plaid Link. Plaid Link is the interface your users interact with to securely connect their financial accounts. It is primarily used in testing environments, enabling you to simulate user interactions and test integrations without live user data."
+					},
+					"response": [
+						{
+							"name": "Create Public Token",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"institution_id\": \"ins_109508\",\r\n  \"initial_products\": [\"auth\"],\r\n  \"client_id\": \"673f1c720203ee001a70d45b\",\r\n  \"secret\": \"f32f7cf0956ae84f62410166109711\"\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://sandbox.plaid.com/sandbox/public_token/create",
+									"protocol": "https",
+									"host": [
+										"sandbox",
+										"plaid",
+										"com"
+									],
+									"path": [
+										"sandbox",
+										"public_token",
+										"create"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 25 Nov 2024 10:03:49 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "124"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "content-encoding",
+									"value": "gzip"
+								},
+								{
+									"key": "plaid-version",
+									"value": "2020-09-14"
+								},
+								{
+									"key": "vary",
+									"value": "Accept-Encoding"
+								},
+								{
+									"key": "Strict-Transport-Security",
+									"value": "max-age=31536000; includeSubDomains; preload"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "1; mode=block"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"public_token\": \"public-sandbox-0574ac06-c653-4444-bd76-63ad5dc43915\",\n    \"request_id\": \"mUUkJKoGGOTroWa\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Request Access Token",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"public_token\": \"public-sandbox-3f08cba9-11fd-4808-a15d-b285bce6c9cb\",\r\n  \"client_id\": \"673f1c720203ee001a70d45b\",\r\n  \"secret\": \"f32f7cf0956ae84f62410166109711\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://sandbox.plaid.com/item/public_token/exchange",
+							"protocol": "https",
+							"host": [
+								"sandbox",
+								"plaid",
+								"com"
+							],
+							"path": [
+								"item",
+								"public_token",
+								"exchange"
+							]
+						},
+						"description": "This endpoint is used to exchange a **public token** for a **private access token** after a user has successfully linked their bank account via the Plaid Link flow. This access token allows you to securely access a user's financial data, such as account balances, transactions, and more, without exposing sensitive information like usernames and passwords. This step is crucial for integrating Plaid into your app, as it establishes a secure connection between your application and the user's bank account for further interactions."
+					},
+					"response": [
+						{
+							"name": "Request Access Token",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"public_token\": \"public-sandbox-3f08cba9-11fd-4808-a15d-b285bce6c9cb\",\r\n  \"client_id\": \"673f1c720203ee001a70d45b\",\r\n  \"secret\": \"f32f7cf0956ae84f62410166109711\"\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://sandbox.plaid.com/item/public_token/exchange",
+									"protocol": "https",
+									"host": [
+										"sandbox",
+										"plaid",
+										"com"
+									],
+									"path": [
+										"item",
+										"public_token",
+										"exchange"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 25 Nov 2024 10:04:18 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "289"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "content-encoding",
+									"value": "gzip"
+								},
+								{
+									"key": "plaid-version",
+									"value": "2020-09-14"
+								},
+								{
+									"key": "vary",
+									"value": "Accept-Encoding"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"display_message\": null,\n    \"documentation_url\": \"https://plaid.com/docs/?ref=error#invalid-input-errors\",\n    \"error_code\": \"INVALID_PUBLIC_TOKEN\",\n    \"error_message\": \"provided public token is expired. Public tokens expire 30 minutes after creation at which point they can no longer be exchanged\",\n    \"error_type\": \"INVALID_INPUT\",\n    \"request_id\": \"lCz7Zt2RtwoNa7Z\",\n    \"suggested_action\": null\n}"
+						}
+					]
+				}
+			],
+			"description": "The **Link endpoints** power the user interface where users securely connect their financial accounts to your application. These endpoints facilitate the creation and management of public tokens, which are exchanged for access tokens to authenticate and retrieve account data."
+		},
+		{
+			"name": "Identity",
+			"item": [
+				{
+					"name": "Fetch identity data",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"client_id\": \"{{client_id}}\",\r\n  \"secret\": \"{{secret_key}}\",\r\n  \"access_token\": \"{{access_token}}\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base-url}}/identity/get",
+							"host": [
+								"{{base-url}}"
+							],
+							"path": [
+								"identity",
+								"get"
+							]
+						},
+						"description": "This endpoint allows you to fetch personal identity information associated with a user's financial accounts. It’s typically used to verify the identity of a person or to get details required for KYC (Know Your Customer) processes. This includes details such as the account holder's name, email address, and other identity data associated with their financial accounts."
+					},
+					"response": [
+						{
+							"name": "Fetch identity data",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"client_id\": \"{{client_id}}\",\r\n  \"secret\": \"{{secret_key}}\",\r\n  \"access_token\": \"{{access_token}}\"\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base-url}}/identity/get",
+									"host": [
+										"{{base-url}}"
+									],
+									"path": [
+										"identity",
+										"get"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 25 Nov 2024 10:02:12 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "content-encoding",
+									"value": "gzip"
+								},
+								{
+									"key": "plaid-version",
+									"value": "2020-09-14"
+								},
+								{
+									"key": "vary",
+									"value": "Accept-Encoding"
+								},
+								{
+									"key": "Strict-Transport-Security",
+									"value": "max-age=31536000; includeSubDomains; preload"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "1; mode=block"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"accounts\": [\n        {\n            \"account_id\": \"yBryNwlqqpUGwqlVeJElUgkAz7PV7of46ovnJ\",\n            \"balances\": {\n                \"available\": 100,\n                \"current\": 110,\n                \"iso_currency_code\": \"USD\",\n                \"limit\": null,\n                \"unofficial_currency_code\": null\n            },\n            \"mask\": \"0000\",\n            \"name\": \"Plaid Checking\",\n            \"official_name\": \"Plaid Gold Standard 0% Interest Checking\",\n            \"owners\": [\n                {\n                    \"addresses\": [\n                        {\n                            \"data\": {\n                                \"city\": \"Malakoff\",\n                                \"country\": \"US\",\n                                \"postal_code\": \"14236\",\n                                \"region\": \"NY\",\n                                \"street\": \"2992 Cameron Road\"\n                            },\n                            \"primary\": true\n                        },\n                        {\n                            \"data\": {\n                                \"city\": \"San Matias\",\n                                \"country\": \"US\",\n                                \"postal_code\": \"93405-2255\",\n                                \"region\": \"CA\",\n                                \"street\": \"2493 Leisure Lane\"\n                            },\n                            \"primary\": false\n                        }\n                    ],\n                    \"emails\": [\n                        {\n                            \"data\": \"accountholder0@example.com\",\n                            \"primary\": true,\n                            \"type\": \"primary\"\n                        },\n                        {\n                            \"data\": \"accountholder1@example.com\",\n                            \"primary\": false,\n                            \"type\": \"secondary\"\n                        },\n                        {\n                            \"data\": \"extraordinarily.long.email.username.123456@reallylonghostname.com\",\n                            \"primary\": false,\n                            \"type\": \"other\"\n                        }\n                    ],\n                    \"names\": [\n                        \"Alberta Bobbeth Charleson\"\n                    ],\n                    \"phone_numbers\": [\n                        {\n                            \"data\": \"1112223333\",\n                            \"primary\": false,\n                            \"type\": \"home\"\n                        },\n                        {\n                            \"data\": \"1112224444\",\n                            \"primary\": false,\n                            \"type\": \"work\"\n                        },\n                        {\n                            \"data\": \"1112225555\",\n                            \"primary\": false,\n                            \"type\": \"mobile\"\n                        }\n                    ]\n                }\n            ],\n            \"persistent_account_id\": \"8cfb8beb89b774ee43b090625f0d61d0814322b43bff984eaf60386e\",\n            \"subtype\": \"checking\",\n            \"type\": \"depository\"\n        },\n        {\n            \"account_id\": \"9B6D1JnrrZUkPwd6bX7dUG4gynApnqs4xkJyX\",\n            \"balances\": {\n                \"available\": 200,\n                \"current\": 210,\n                \"iso_currency_code\": \"USD\",\n                \"limit\": null,\n                \"unofficial_currency_code\": null\n            },\n            \"mask\": \"1111\",\n            \"name\": \"Plaid Saving\",\n            \"official_name\": \"Plaid Silver Standard 0.1% Interest Saving\",\n            \"owners\": [\n                {\n                    \"addresses\": [\n                        {\n                            \"data\": {\n                                \"city\": \"Malakoff\",\n                                \"country\": \"US\",\n                                \"postal_code\": \"14236\",\n                                \"region\": \"NY\",\n                                \"street\": \"2992 Cameron Road\"\n                            },\n                            \"primary\": true\n                        },\n                        {\n                            \"data\": {\n                                \"city\": \"San Matias\",\n                                \"country\": \"US\",\n                                \"postal_code\": \"93405-2255\",\n                                \"region\": \"CA\",\n                                \"street\": \"2493 Leisure Lane\"\n                            },\n                            \"primary\": false\n                        }\n                    ],\n                    \"emails\": [\n                        {\n                            \"data\": \"accountholder0@example.com\",\n                            \"primary\": true,\n                            \"type\": \"primary\"\n                        },\n                        {\n                            \"data\": \"accountholder1@example.com\",\n                            \"primary\": false,\n                            \"type\": \"secondary\"\n                        },\n                        {\n                            \"data\": \"extraordinarily.long.email.username.123456@reallylonghostname.com\",\n                            \"primary\": false,\n                            \"type\": \"other\"\n                        }\n                    ],\n                    \"names\": [\n                        \"Alberta Bobbeth Charleson\"\n                    ],\n                    \"phone_numbers\": [\n                        {\n                            \"data\": \"1112223333\",\n                            \"primary\": false,\n                            \"type\": \"home\"\n                        },\n                        {\n                            \"data\": \"1112224444\",\n                            \"primary\": false,\n                            \"type\": \"work\"\n                        },\n                        {\n                            \"data\": \"1112225555\",\n                            \"primary\": false,\n                            \"type\": \"mobile\"\n                        }\n                    ]\n                }\n            ],\n            \"persistent_account_id\": \"211a4e5d8361a3afb7a3886362198c7306e00a313b5aa944c20d34b6\",\n            \"subtype\": \"savings\",\n            \"type\": \"depository\"\n        },\n        {\n            \"account_id\": \"vKlydvVXXkCmvkLaM61LTVlrM7bw7duq6g7ey\",\n            \"balances\": {\n                \"available\": null,\n                \"current\": 1000,\n                \"iso_currency_code\": \"USD\",\n                \"limit\": null,\n                \"unofficial_currency_code\": null\n            },\n            \"mask\": \"2222\",\n            \"name\": \"Plaid CD\",\n            \"official_name\": \"Plaid Bronze Standard 0.2% Interest CD\",\n            \"owners\": [\n                {\n                    \"addresses\": [\n                        {\n                            \"data\": {\n                                \"city\": \"Malakoff\",\n                                \"country\": \"US\",\n                                \"postal_code\": \"14236\",\n                                \"region\": \"NY\",\n                                \"street\": \"2992 Cameron Road\"\n                            },\n                            \"primary\": true\n                        },\n                        {\n                            \"data\": {\n                                \"city\": \"San Matias\",\n                                \"country\": \"US\",\n                                \"postal_code\": \"93405-2255\",\n                                \"region\": \"CA\",\n                                \"street\": \"2493 Leisure Lane\"\n                            },\n                            \"primary\": false\n                        }\n                    ],\n                    \"emails\": [\n                        {\n                            \"data\": \"accountholder0@example.com\",\n                            \"primary\": true,\n                            \"type\": \"primary\"\n                        },\n                        {\n                            \"data\": \"accountholder1@example.com\",\n                            \"primary\": false,\n                            \"type\": \"secondary\"\n                        },\n                        {\n                            \"data\": \"extraordinarily.long.email.username.123456@reallylonghostname.com\",\n                            \"primary\": false,\n                            \"type\": \"other\"\n                        }\n                    ],\n                    \"names\": [\n                        \"Alberta Bobbeth Charleson\"\n                    ],\n                    \"phone_numbers\": [\n                        {\n                            \"data\": \"1112223333\",\n                            \"primary\": false,\n                            \"type\": \"home\"\n                        },\n                        {\n                            \"data\": \"1112224444\",\n                            \"primary\": false,\n                            \"type\": \"work\"\n                        },\n                        {\n                            \"data\": \"1112225555\",\n                            \"primary\": false,\n                            \"type\": \"mobile\"\n                        }\n                    ]\n                }\n            ],\n            \"persistent_account_id\": \"2a01484e1b5ef0b54fbcb89658b2764529bbec94a16f7b95481280a7\",\n            \"subtype\": \"cd\",\n            \"type\": \"depository\"\n        },\n        {\n            \"account_id\": \"L8P6KJZll9TyG9r3zVnrhvbz8KkaKEtkjqzKD\",\n            \"balances\": {\n                \"available\": null,\n                \"current\": 410,\n                \"iso_currency_code\": \"USD\",\n                \"limit\": 2000,\n                \"unofficial_currency_code\": null\n            },\n            \"mask\": \"3333\",\n            \"name\": \"Plaid Credit Card\",\n            \"official_name\": \"Plaid Diamond 12.5% APR Interest Credit Card\",\n            \"owners\": [\n                {\n                    \"addresses\": [\n                        {\n                            \"data\": {\n                                \"city\": \"Malakoff\",\n                                \"country\": \"US\",\n                                \"postal_code\": \"14236\",\n                                \"region\": \"NY\",\n                                \"street\": \"2992 Cameron Road\"\n                            },\n                            \"primary\": true\n                        },\n                        {\n                            \"data\": {\n                                \"city\": \"San Matias\",\n                                \"country\": \"US\",\n                                \"postal_code\": \"93405-2255\",\n                                \"region\": \"CA\",\n                                \"street\": \"2493 Leisure Lane\"\n                            },\n                            \"primary\": false\n                        }\n                    ],\n                    \"emails\": [\n                        {\n                            \"data\": \"accountholder0@example.com\",\n                            \"primary\": true,\n                            \"type\": \"primary\"\n                        },\n                        {\n                            \"data\": \"accountholder1@example.com\",\n                            \"primary\": false,\n                            \"type\": \"secondary\"\n                        },\n                        {\n                            \"data\": \"extraordinarily.long.email.username.123456@reallylonghostname.com\",\n                            \"primary\": false,\n                            \"type\": \"other\"\n                        }\n                    ],\n                    \"names\": [\n                        \"Alberta Bobbeth Charleson\"\n                    ],\n                    \"phone_numbers\": [\n                        {\n                            \"data\": \"1112223333\",\n                            \"primary\": false,\n                            \"type\": \"home\"\n                        },\n                        {\n                            \"data\": \"1112224444\",\n                            \"primary\": false,\n                            \"type\": \"work\"\n                        },\n                        {\n                            \"data\": \"1112225555\",\n                            \"primary\": false,\n                            \"type\": \"mobile\"\n                        }\n                    ]\n                }\n            ],\n            \"subtype\": \"credit card\",\n            \"type\": \"credit\"\n        },\n        {\n            \"account_id\": \"pGAZKvVwwecG8DwnXlVwU7bNZVxyVXtpobmo5\",\n            \"balances\": {\n                \"available\": 43200,\n                \"current\": 43200,\n                \"iso_currency_code\": \"USD\",\n                \"limit\": null,\n                \"unofficial_currency_code\": null\n            },\n            \"mask\": \"4444\",\n            \"name\": \"Plaid Money Market\",\n            \"official_name\": \"Plaid Platinum Standard 1.85% Interest Money Market\",\n            \"owners\": [\n                {\n                    \"addresses\": [\n                        {\n                            \"data\": {\n                                \"city\": \"Malakoff\",\n                                \"country\": \"US\",\n                                \"postal_code\": \"14236\",\n                                \"region\": \"NY\",\n                                \"street\": \"2992 Cameron Road\"\n                            },\n                            \"primary\": true\n                        },\n                        {\n                            \"data\": {\n                                \"city\": \"San Matias\",\n                                \"country\": \"US\",\n                                \"postal_code\": \"93405-2255\",\n                                \"region\": \"CA\",\n                                \"street\": \"2493 Leisure Lane\"\n                            },\n                            \"primary\": false\n                        }\n                    ],\n                    \"emails\": [\n                        {\n                            \"data\": \"accountholder0@example.com\",\n                            \"primary\": true,\n                            \"type\": \"primary\"\n                        },\n                        {\n                            \"data\": \"accountholder1@example.com\",\n                            \"primary\": false,\n                            \"type\": \"secondary\"\n                        },\n                        {\n                            \"data\": \"extraordinarily.long.email.username.123456@reallylonghostname.com\",\n                            \"primary\": false,\n                            \"type\": \"other\"\n                        }\n                    ],\n                    \"names\": [\n                        \"Alberta Bobbeth Charleson\"\n                    ],\n                    \"phone_numbers\": [\n                        {\n                            \"data\": \"1112223333\",\n                            \"primary\": false,\n                            \"type\": \"home\"\n                        },\n                        {\n                            \"data\": \"1112224444\",\n                            \"primary\": false,\n                            \"type\": \"work\"\n                        },\n                        {\n                            \"data\": \"1112225555\",\n                            \"primary\": false,\n                            \"type\": \"mobile\"\n                        }\n                    ]\n                }\n            ],\n            \"subtype\": \"money market\",\n            \"type\": \"depository\"\n        },\n        {\n            \"account_id\": \"oAyQqvVEE7fj81QdgxEQIDLnd6bj69foq1wqg\",\n            \"balances\": {\n                \"available\": null,\n                \"current\": 320.76,\n                \"iso_currency_code\": \"USD\",\n                \"limit\": null,\n                \"unofficial_currency_code\": null\n            },\n            \"mask\": \"5555\",\n            \"name\": \"Plaid IRA\",\n            \"official_name\": null,\n            \"owners\": [\n                {\n                    \"addresses\": [\n                        {\n                            \"data\": {\n                                \"city\": \"Malakoff\",\n                                \"country\": \"US\",\n                                \"postal_code\": \"14236\",\n                                \"region\": \"NY\",\n                                \"street\": \"2992 Cameron Road\"\n                            },\n                            \"primary\": true\n                        },\n                        {\n                            \"data\": {\n                                \"city\": \"San Matias\",\n                                \"country\": \"US\",\n                                \"postal_code\": \"93405-2255\",\n                                \"region\": \"CA\",\n                                \"street\": \"2493 Leisure Lane\"\n                            },\n                            \"primary\": false\n                        }\n                    ],\n                    \"emails\": [\n                        {\n                            \"data\": \"accountholder0@example.com\",\n                            \"primary\": true,\n                            \"type\": \"primary\"\n                        },\n                        {\n                            \"data\": \"accountholder1@example.com\",\n                            \"primary\": false,\n                            \"type\": \"secondary\"\n                        },\n                        {\n                            \"data\": \"extraordinarily.long.email.username.123456@reallylonghostname.com\",\n                            \"primary\": false,\n                            \"type\": \"other\"\n                        }\n                    ],\n                    \"names\": [\n                        \"Alberta Bobbeth Charleson\"\n                    ],\n                    \"phone_numbers\": [\n                        {\n                            \"data\": \"1112223333\",\n                            \"primary\": false,\n                            \"type\": \"home\"\n                        },\n                        {\n                            \"data\": \"1112224444\",\n                            \"primary\": false,\n                            \"type\": \"work\"\n                        },\n                        {\n                            \"data\": \"1112225555\",\n                            \"primary\": false,\n                            \"type\": \"mobile\"\n                        }\n                    ]\n                }\n            ],\n            \"subtype\": \"ira\",\n            \"type\": \"investment\"\n        },\n        {\n            \"account_id\": \"g17dnoV993FBVbXl7WnXfrykonVGneiE8Pk8W\",\n            \"balances\": {\n                \"available\": null,\n                \"current\": 23631.9805,\n                \"iso_currency_code\": \"USD\",\n                \"limit\": null,\n                \"unofficial_currency_code\": null\n            },\n            \"mask\": \"6666\",\n            \"name\": \"Plaid 401k\",\n            \"official_name\": null,\n            \"owners\": [\n                {\n                    \"addresses\": [\n                        {\n                            \"data\": {\n                                \"city\": \"Malakoff\",\n                                \"country\": \"US\",\n                                \"postal_code\": \"14236\",\n                                \"region\": \"NY\",\n                                \"street\": \"2992 Cameron Road\"\n                            },\n                            \"primary\": true\n                        },\n                        {\n                            \"data\": {\n                                \"city\": \"San Matias\",\n                                \"country\": \"US\",\n                                \"postal_code\": \"93405-2255\",\n                                \"region\": \"CA\",\n                                \"street\": \"2493 Leisure Lane\"\n                            },\n                            \"primary\": false\n                        }\n                    ],\n                    \"emails\": [\n                        {\n                            \"data\": \"accountholder0@example.com\",\n                            \"primary\": true,\n                            \"type\": \"primary\"\n                        },\n                        {\n                            \"data\": \"accountholder1@example.com\",\n                            \"primary\": false,\n                            \"type\": \"secondary\"\n                        },\n                        {\n                            \"data\": \"extraordinarily.long.email.username.123456@reallylonghostname.com\",\n                            \"primary\": false,\n                            \"type\": \"other\"\n                        }\n                    ],\n                    \"names\": [\n                        \"Alberta Bobbeth Charleson\"\n                    ],\n                    \"phone_numbers\": [\n                        {\n                            \"data\": \"1112223333\",\n                            \"primary\": false,\n                            \"type\": \"home\"\n                        },\n                        {\n                            \"data\": \"1112224444\",\n                            \"primary\": false,\n                            \"type\": \"work\"\n                        },\n                        {\n                            \"data\": \"1112225555\",\n                            \"primary\": false,\n                            \"type\": \"mobile\"\n                        }\n                    ]\n                }\n            ],\n            \"subtype\": \"401k\",\n            \"type\": \"investment\"\n        },\n        {\n            \"account_id\": \"8zZAMgGKKQhvNnxj1gJxf1jDJndbnXsW3gE3G\",\n            \"balances\": {\n                \"available\": null,\n                \"current\": 65262,\n                \"iso_currency_code\": \"USD\",\n                \"limit\": null,\n                \"unofficial_currency_code\": null\n            },\n            \"mask\": \"7777\",\n            \"name\": \"Plaid Student Loan\",\n            \"official_name\": null,\n            \"owners\": [\n                {\n                    \"addresses\": [\n                        {\n                            \"data\": {\n                                \"city\": \"Malakoff\",\n                                \"country\": \"US\",\n                                \"postal_code\": \"14236\",\n                                \"region\": \"NY\",\n                                \"street\": \"2992 Cameron Road\"\n                            },\n                            \"primary\": true\n                        },\n                        {\n                            \"data\": {\n                                \"city\": \"San Matias\",\n                                \"country\": \"US\",\n                                \"postal_code\": \"93405-2255\",\n                                \"region\": \"CA\",\n                                \"street\": \"2493 Leisure Lane\"\n                            },\n                            \"primary\": false\n                        }\n                    ],\n                    \"emails\": [\n                        {\n                            \"data\": \"accountholder0@example.com\",\n                            \"primary\": true,\n                            \"type\": \"primary\"\n                        },\n                        {\n                            \"data\": \"accountholder1@example.com\",\n                            \"primary\": false,\n                            \"type\": \"secondary\"\n                        },\n                        {\n                            \"data\": \"extraordinarily.long.email.username.123456@reallylonghostname.com\",\n                            \"primary\": false,\n                            \"type\": \"other\"\n                        }\n                    ],\n                    \"names\": [\n                        \"Alberta Bobbeth Charleson\"\n                    ],\n                    \"phone_numbers\": [\n                        {\n                            \"data\": \"1112223333\",\n                            \"primary\": false,\n                            \"type\": \"home\"\n                        },\n                        {\n                            \"data\": \"1112224444\",\n                            \"primary\": false,\n                            \"type\": \"work\"\n                        },\n                        {\n                            \"data\": \"1112225555\",\n                            \"primary\": false,\n                            \"type\": \"mobile\"\n                        }\n                    ]\n                }\n            ],\n            \"subtype\": \"student\",\n            \"type\": \"loan\"\n        },\n        {\n            \"account_id\": \"EZ3bmJ4ee6UbaVWd1XxWhGZdBWyaWjs4xrdxP\",\n            \"balances\": {\n                \"available\": null,\n                \"current\": 56302.06,\n                \"iso_currency_code\": \"USD\",\n                \"limit\": null,\n                \"unofficial_currency_code\": null\n            },\n            \"mask\": \"8888\",\n            \"name\": \"Plaid Mortgage\",\n            \"official_name\": null,\n            \"owners\": [\n                {\n                    \"addresses\": [\n                        {\n                            \"data\": {\n                                \"city\": \"Malakoff\",\n                                \"country\": \"US\",\n                                \"postal_code\": \"14236\",\n                                \"region\": \"NY\",\n                                \"street\": \"2992 Cameron Road\"\n                            },\n                            \"primary\": true\n                        },\n                        {\n                            \"data\": {\n                                \"city\": \"San Matias\",\n                                \"country\": \"US\",\n                                \"postal_code\": \"93405-2255\",\n                                \"region\": \"CA\",\n                                \"street\": \"2493 Leisure Lane\"\n                            },\n                            \"primary\": false\n                        }\n                    ],\n                    \"emails\": [\n                        {\n                            \"data\": \"accountholder0@example.com\",\n                            \"primary\": true,\n                            \"type\": \"primary\"\n                        },\n                        {\n                            \"data\": \"accountholder1@example.com\",\n                            \"primary\": false,\n                            \"type\": \"secondary\"\n                        },\n                        {\n                            \"data\": \"extraordinarily.long.email.username.123456@reallylonghostname.com\",\n                            \"primary\": false,\n                            \"type\": \"other\"\n                        }\n                    ],\n                    \"names\": [\n                        \"Alberta Bobbeth Charleson\"\n                    ],\n                    \"phone_numbers\": [\n                        {\n                            \"data\": \"1112223333\",\n                            \"primary\": false,\n                            \"type\": \"home\"\n                        },\n                        {\n                            \"data\": \"1112224444\",\n                            \"primary\": false,\n                            \"type\": \"work\"\n                        },\n                        {\n                            \"data\": \"1112225555\",\n                            \"primary\": false,\n                            \"type\": \"mobile\"\n                        }\n                    ]\n                }\n            ],\n            \"subtype\": \"mortgage\",\n            \"type\": \"loan\"\n        },\n        {\n            \"account_id\": \"WrkVj3GNN9SBXvjlVPxjfoWaAGBKGXT6ZXaZK\",\n            \"balances\": {\n                \"available\": 6009,\n                \"current\": 6009,\n                \"iso_currency_code\": \"USD\",\n                \"limit\": null,\n                \"unofficial_currency_code\": null\n            },\n            \"mask\": \"9001\",\n            \"name\": \"Plaid HSA\",\n            \"official_name\": \"Plaid Cares Health Savings Account\",\n            \"owners\": [\n                {\n                    \"addresses\": [\n                        {\n                            \"data\": {\n                                \"city\": \"Malakoff\",\n                                \"country\": \"US\",\n                                \"postal_code\": \"14236\",\n                                \"region\": \"NY\",\n                                \"street\": \"2992 Cameron Road\"\n                            },\n                            \"primary\": true\n                        },\n                        {\n                            \"data\": {\n                                \"city\": \"San Matias\",\n                                \"country\": \"US\",\n                                \"postal_code\": \"93405-2255\",\n                                \"region\": \"CA\",\n                                \"street\": \"2493 Leisure Lane\"\n                            },\n                            \"primary\": false\n                        }\n                    ],\n                    \"emails\": [\n                        {\n                            \"data\": \"accountholder0@example.com\",\n                            \"primary\": true,\n                            \"type\": \"primary\"\n                        },\n                        {\n                            \"data\": \"accountholder1@example.com\",\n                            \"primary\": false,\n                            \"type\": \"secondary\"\n                        },\n                        {\n                            \"data\": \"extraordinarily.long.email.username.123456@reallylonghostname.com\",\n                            \"primary\": false,\n                            \"type\": \"other\"\n                        }\n                    ],\n                    \"names\": [\n                        \"Alberta Bobbeth Charleson\"\n                    ],\n                    \"phone_numbers\": [\n                        {\n                            \"data\": \"1112223333\",\n                            \"primary\": false,\n                            \"type\": \"home\"\n                        },\n                        {\n                            \"data\": \"1112224444\",\n                            \"primary\": false,\n                            \"type\": \"work\"\n                        },\n                        {\n                            \"data\": \"1112225555\",\n                            \"primary\": false,\n                            \"type\": \"mobile\"\n                        }\n                    ]\n                }\n            ],\n            \"subtype\": \"hsa\",\n            \"type\": \"depository\"\n        },\n        {\n            \"account_id\": \"AjK6AJ3NNmUyl4oLkGrohjAzwW8QWgf9raerA\",\n            \"balances\": {\n                \"available\": 12060,\n                \"current\": 12060,\n                \"iso_currency_code\": \"USD\",\n                \"limit\": null,\n                \"unofficial_currency_code\": null\n            },\n            \"mask\": \"9002\",\n            \"name\": \"Plaid Cash Management\",\n            \"official_name\": \"Plaid Growth Cash Management\",\n            \"owners\": [\n                {\n                    \"addresses\": [\n                        {\n                            \"data\": {\n                                \"city\": \"Malakoff\",\n                                \"country\": \"US\",\n                                \"postal_code\": \"14236\",\n                                \"region\": \"NY\",\n                                \"street\": \"2992 Cameron Road\"\n                            },\n                            \"primary\": true\n                        },\n                        {\n                            \"data\": {\n                                \"city\": \"San Matias\",\n                                \"country\": \"US\",\n                                \"postal_code\": \"93405-2255\",\n                                \"region\": \"CA\",\n                                \"street\": \"2493 Leisure Lane\"\n                            },\n                            \"primary\": false\n                        }\n                    ],\n                    \"emails\": [\n                        {\n                            \"data\": \"accountholder0@example.com\",\n                            \"primary\": true,\n                            \"type\": \"primary\"\n                        },\n                        {\n                            \"data\": \"accountholder1@example.com\",\n                            \"primary\": false,\n                            \"type\": \"secondary\"\n                        },\n                        {\n                            \"data\": \"extraordinarily.long.email.username.123456@reallylonghostname.com\",\n                            \"primary\": false,\n                            \"type\": \"other\"\n                        }\n                    ],\n                    \"names\": [\n                        \"Alberta Bobbeth Charleson\"\n                    ],\n                    \"phone_numbers\": [\n                        {\n                            \"data\": \"1112223333\",\n                            \"primary\": false,\n                            \"type\": \"home\"\n                        },\n                        {\n                            \"data\": \"1112224444\",\n                            \"primary\": false,\n                            \"type\": \"work\"\n                        },\n                        {\n                            \"data\": \"1112225555\",\n                            \"primary\": false,\n                            \"type\": \"mobile\"\n                        }\n                    ]\n                }\n            ],\n            \"subtype\": \"cash management\",\n            \"type\": \"depository\"\n        },\n        {\n            \"account_id\": \"G1dA9JPZZmFXdVDy4g9DSeKjaA83AXT6MqjM3\",\n            \"balances\": {\n                \"available\": 4980,\n                \"current\": 5020,\n                \"iso_currency_code\": \"USD\",\n                \"limit\": 10000,\n                \"unofficial_currency_code\": null\n            },\n            \"mask\": \"9999\",\n            \"name\": \"Plaid Business Credit Card\",\n            \"official_name\": \"Plaid Platinum Small Business Credit Card\",\n            \"owners\": [\n                {\n                    \"addresses\": [\n                        {\n                            \"data\": {\n                                \"city\": \"Malakoff\",\n                                \"country\": \"US\",\n                                \"postal_code\": \"14236\",\n                                \"region\": \"NY\",\n                                \"street\": \"2992 Cameron Road\"\n                            },\n                            \"primary\": true\n                        },\n                        {\n                            \"data\": {\n                                \"city\": \"San Matias\",\n                                \"country\": \"US\",\n                                \"postal_code\": \"93405-2255\",\n                                \"region\": \"CA\",\n                                \"street\": \"2493 Leisure Lane\"\n                            },\n                            \"primary\": false\n                        }\n                    ],\n                    \"emails\": [\n                        {\n                            \"data\": \"accountholder0@example.com\",\n                            \"primary\": true,\n                            \"type\": \"primary\"\n                        },\n                        {\n                            \"data\": \"accountholder1@example.com\",\n                            \"primary\": false,\n                            \"type\": \"secondary\"\n                        },\n                        {\n                            \"data\": \"extraordinarily.long.email.username.123456@reallylonghostname.com\",\n                            \"primary\": false,\n                            \"type\": \"other\"\n                        }\n                    ],\n                    \"names\": [\n                        \"Alberta Bobbeth Charleson\"\n                    ],\n                    \"phone_numbers\": [\n                        {\n                            \"data\": \"1112223333\",\n                            \"primary\": false,\n                            \"type\": \"home\"\n                        },\n                        {\n                            \"data\": \"1112224444\",\n                            \"primary\": false,\n                            \"type\": \"work\"\n                        },\n                        {\n                            \"data\": \"1112225555\",\n                            \"primary\": false,\n                            \"type\": \"mobile\"\n                        }\n                    ]\n                }\n            ],\n            \"subtype\": \"credit card\",\n            \"type\": \"credit\"\n        }\n    ],\n    \"item\": {\n        \"available_products\": [\n            \"assets\",\n            \"balance\",\n            \"signal\",\n            \"income_verification\",\n            \"investments\",\n            \"investments_auth\",\n            \"liabilities\",\n            \"recurring_transactions\",\n            \"statements\",\n            \"transfer\"\n        ],\n        \"billed_products\": [\n            \"auth\",\n            \"identity\",\n            \"identity_match\",\n            \"transactions\"\n        ],\n        \"consent_expiration_time\": null,\n        \"error\": null,\n        \"institution_id\": \"ins_109508\",\n        \"institution_name\": \"First Platypus Bank\",\n        \"item_id\": \"qnAMrvVwwQUev6kL5lwkT8XZyP1J9zcdNq7ZM\",\n        \"products\": [\n            \"auth\",\n            \"signal\",\n            \"identity\",\n            \"identity_match\",\n            \"transactions\"\n        ],\n        \"update_type\": \"background\",\n        \"webhook\": \"\"\n    },\n    \"request_id\": \"4qlFBcp01DnwTvB\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Retrieve identity match score",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"client_id\": \"{{client_id}}\",\r\n  \"secret\": \"{{secret_key}}\",\r\n  \"access_token\": \"{{access_token}}\",\r\n  \"user\": {\r\n    \"email_address\": \"johndoe@example.com\",\r\n    \"phone_number\": \"123-456-7890\"\r\n  }\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base-url}}/identity/match",
+							"host": [
+								"{{base-url}}"
+							],
+							"path": [
+								"identity",
+								"match"
+							]
+						},
+						"description": "This endpoint is used for identity verification purposes. It allows you to match the identity information from a linked financial account against the data you have, like during the Know Your Customer (KYC) or fraud detection processes."
+					},
+					"response": [
+						{
+							"name": "Retrieve identity match score",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"client_id\": \"{{client_id}}\",\r\n  \"secret\": \"{{secret_key}}\",\r\n  \"access_token\": \"{{access_token}}\",\r\n  \"user\": {\r\n    \"email_address\": \"johndoe@example.com\",\r\n    \"phone_number\": \"123-456-7890\"\r\n  }\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base-url}}/identity/match",
+									"host": [
+										"{{base-url}}"
+									],
+									"path": [
+										"identity",
+										"match"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 25 Nov 2024 10:02:38 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "1533"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "content-encoding",
+									"value": "gzip"
+								},
+								{
+									"key": "plaid-version",
+									"value": "2020-09-14"
+								},
+								{
+									"key": "vary",
+									"value": "Accept-Encoding"
+								},
+								{
+									"key": "Strict-Transport-Security",
+									"value": "max-age=31536000; includeSubDomains; preload"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "1; mode=block"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"accounts\": [\n        {\n            \"account_id\": \"yBryNwlqqpUGwqlVeJElUgkAz7PV7of46ovnJ\",\n            \"address\": {\n                \"is_postal_code_match\": null,\n                \"score\": null\n            },\n            \"balances\": {\n                \"available\": null,\n                \"current\": null,\n                \"iso_currency_code\": null,\n                \"limit\": null,\n                \"unofficial_currency_code\": null\n            },\n            \"email_address\": {\n                \"score\": 0\n            },\n            \"legal_name\": {\n                \"is_business_name_detected\": null,\n                \"is_first_name_or_last_name_match\": null,\n                \"is_nickname_match\": null,\n                \"score\": null\n            },\n            \"mask\": \"0000\",\n            \"name\": \"Plaid Checking\",\n            \"official_name\": \"Plaid Gold Standard 0% Interest Checking\",\n            \"persistent_account_id\": \"8cfb8beb89b774ee43b090625f0d61d0814322b43bff984eaf60386e\",\n            \"phone_number\": {\n                \"score\": 0\n            },\n            \"subtype\": \"checking\",\n            \"type\": \"depository\"\n        },\n        {\n            \"account_id\": \"9B6D1JnrrZUkPwd6bX7dUG4gynApnqs4xkJyX\",\n            \"address\": {\n                \"is_postal_code_match\": null,\n                \"score\": null\n            },\n            \"balances\": {\n                \"available\": null,\n                \"current\": null,\n                \"iso_currency_code\": null,\n                \"limit\": null,\n                \"unofficial_currency_code\": null\n            },\n            \"email_address\": {\n                \"score\": 0\n            },\n            \"legal_name\": {\n                \"is_business_name_detected\": null,\n                \"is_first_name_or_last_name_match\": null,\n                \"is_nickname_match\": null,\n                \"score\": null\n            },\n            \"mask\": \"1111\",\n            \"name\": \"Plaid Saving\",\n            \"official_name\": \"Plaid Silver Standard 0.1% Interest Saving\",\n            \"persistent_account_id\": \"211a4e5d8361a3afb7a3886362198c7306e00a313b5aa944c20d34b6\",\n            \"phone_number\": {\n                \"score\": 0\n            },\n            \"subtype\": \"savings\",\n            \"type\": \"depository\"\n        },\n        {\n            \"account_id\": \"vKlydvVXXkCmvkLaM61LTVlrM7bw7duq6g7ey\",\n            \"address\": {\n                \"is_postal_code_match\": null,\n                \"score\": null\n            },\n            \"balances\": {\n                \"available\": null,\n                \"current\": null,\n                \"iso_currency_code\": null,\n                \"limit\": null,\n                \"unofficial_currency_code\": null\n            },\n            \"email_address\": {\n                \"score\": 0\n            },\n            \"legal_name\": {\n                \"is_business_name_detected\": null,\n                \"is_first_name_or_last_name_match\": null,\n                \"is_nickname_match\": null,\n                \"score\": null\n            },\n            \"mask\": \"2222\",\n            \"name\": \"Plaid CD\",\n            \"official_name\": \"Plaid Bronze Standard 0.2% Interest CD\",\n            \"persistent_account_id\": \"2a01484e1b5ef0b54fbcb89658b2764529bbec94a16f7b95481280a7\",\n            \"phone_number\": {\n                \"score\": 0\n            },\n            \"subtype\": \"cd\",\n            \"type\": \"depository\"\n        },\n        {\n            \"account_id\": \"L8P6KJZll9TyG9r3zVnrhvbz8KkaKEtkjqzKD\",\n            \"address\": {\n                \"is_postal_code_match\": null,\n                \"score\": null\n            },\n            \"balances\": {\n                \"available\": null,\n                \"current\": null,\n                \"iso_currency_code\": null,\n                \"limit\": null,\n                \"unofficial_currency_code\": null\n            },\n            \"email_address\": {\n                \"score\": 0\n            },\n            \"legal_name\": {\n                \"is_business_name_detected\": null,\n                \"is_first_name_or_last_name_match\": null,\n                \"is_nickname_match\": null,\n                \"score\": null\n            },\n            \"mask\": \"3333\",\n            \"name\": \"Plaid Credit Card\",\n            \"official_name\": \"Plaid Diamond 12.5% APR Interest Credit Card\",\n            \"phone_number\": {\n                \"score\": 0\n            },\n            \"subtype\": \"credit card\",\n            \"type\": \"credit\"\n        },\n        {\n            \"account_id\": \"pGAZKvVwwecG8DwnXlVwU7bNZVxyVXtpobmo5\",\n            \"address\": {\n                \"is_postal_code_match\": null,\n                \"score\": null\n            },\n            \"balances\": {\n                \"available\": null,\n                \"current\": null,\n                \"iso_currency_code\": null,\n                \"limit\": null,\n                \"unofficial_currency_code\": null\n            },\n            \"email_address\": {\n                \"score\": 0\n            },\n            \"legal_name\": {\n                \"is_business_name_detected\": null,\n                \"is_first_name_or_last_name_match\": null,\n                \"is_nickname_match\": null,\n                \"score\": null\n            },\n            \"mask\": \"4444\",\n            \"name\": \"Plaid Money Market\",\n            \"official_name\": \"Plaid Platinum Standard 1.85% Interest Money Market\",\n            \"phone_number\": {\n                \"score\": 0\n            },\n            \"subtype\": \"money market\",\n            \"type\": \"depository\"\n        },\n        {\n            \"account_id\": \"oAyQqvVEE7fj81QdgxEQIDLnd6bj69foq1wqg\",\n            \"address\": {\n                \"is_postal_code_match\": null,\n                \"score\": null\n            },\n            \"balances\": {\n                \"available\": null,\n                \"current\": null,\n                \"iso_currency_code\": null,\n                \"limit\": null,\n                \"unofficial_currency_code\": null\n            },\n            \"email_address\": {\n                \"score\": 0\n            },\n            \"legal_name\": {\n                \"is_business_name_detected\": null,\n                \"is_first_name_or_last_name_match\": null,\n                \"is_nickname_match\": null,\n                \"score\": null\n            },\n            \"mask\": \"5555\",\n            \"name\": \"Plaid IRA\",\n            \"official_name\": null,\n            \"phone_number\": {\n                \"score\": 0\n            },\n            \"subtype\": \"ira\",\n            \"type\": \"investment\"\n        },\n        {\n            \"account_id\": \"g17dnoV993FBVbXl7WnXfrykonVGneiE8Pk8W\",\n            \"address\": {\n                \"is_postal_code_match\": null,\n                \"score\": null\n            },\n            \"balances\": {\n                \"available\": null,\n                \"current\": null,\n                \"iso_currency_code\": null,\n                \"limit\": null,\n                \"unofficial_currency_code\": null\n            },\n            \"email_address\": {\n                \"score\": 0\n            },\n            \"legal_name\": {\n                \"is_business_name_detected\": null,\n                \"is_first_name_or_last_name_match\": null,\n                \"is_nickname_match\": null,\n                \"score\": null\n            },\n            \"mask\": \"6666\",\n            \"name\": \"Plaid 401k\",\n            \"official_name\": null,\n            \"phone_number\": {\n                \"score\": 0\n            },\n            \"subtype\": \"401k\",\n            \"type\": \"investment\"\n        },\n        {\n            \"account_id\": \"8zZAMgGKKQhvNnxj1gJxf1jDJndbnXsW3gE3G\",\n            \"address\": {\n                \"is_postal_code_match\": null,\n                \"score\": null\n            },\n            \"balances\": {\n                \"available\": null,\n                \"current\": null,\n                \"iso_currency_code\": null,\n                \"limit\": null,\n                \"unofficial_currency_code\": null\n            },\n            \"email_address\": {\n                \"score\": 0\n            },\n            \"legal_name\": {\n                \"is_business_name_detected\": null,\n                \"is_first_name_or_last_name_match\": null,\n                \"is_nickname_match\": null,\n                \"score\": null\n            },\n            \"mask\": \"7777\",\n            \"name\": \"Plaid Student Loan\",\n            \"official_name\": null,\n            \"phone_number\": {\n                \"score\": 0\n            },\n            \"subtype\": \"student\",\n            \"type\": \"loan\"\n        },\n        {\n            \"account_id\": \"EZ3bmJ4ee6UbaVWd1XxWhGZdBWyaWjs4xrdxP\",\n            \"address\": {\n                \"is_postal_code_match\": null,\n                \"score\": null\n            },\n            \"balances\": {\n                \"available\": null,\n                \"current\": null,\n                \"iso_currency_code\": null,\n                \"limit\": null,\n                \"unofficial_currency_code\": null\n            },\n            \"email_address\": {\n                \"score\": 0\n            },\n            \"legal_name\": {\n                \"is_business_name_detected\": null,\n                \"is_first_name_or_last_name_match\": null,\n                \"is_nickname_match\": null,\n                \"score\": null\n            },\n            \"mask\": \"8888\",\n            \"name\": \"Plaid Mortgage\",\n            \"official_name\": null,\n            \"phone_number\": {\n                \"score\": 0\n            },\n            \"subtype\": \"mortgage\",\n            \"type\": \"loan\"\n        },\n        {\n            \"account_id\": \"WrkVj3GNN9SBXvjlVPxjfoWaAGBKGXT6ZXaZK\",\n            \"address\": {\n                \"is_postal_code_match\": null,\n                \"score\": null\n            },\n            \"balances\": {\n                \"available\": null,\n                \"current\": null,\n                \"iso_currency_code\": null,\n                \"limit\": null,\n                \"unofficial_currency_code\": null\n            },\n            \"email_address\": {\n                \"score\": 0\n            },\n            \"legal_name\": {\n                \"is_business_name_detected\": null,\n                \"is_first_name_or_last_name_match\": null,\n                \"is_nickname_match\": null,\n                \"score\": null\n            },\n            \"mask\": \"9001\",\n            \"name\": \"Plaid HSA\",\n            \"official_name\": \"Plaid Cares Health Savings Account\",\n            \"phone_number\": {\n                \"score\": 0\n            },\n            \"subtype\": \"hsa\",\n            \"type\": \"depository\"\n        },\n        {\n            \"account_id\": \"AjK6AJ3NNmUyl4oLkGrohjAzwW8QWgf9raerA\",\n            \"address\": {\n                \"is_postal_code_match\": null,\n                \"score\": null\n            },\n            \"balances\": {\n                \"available\": null,\n                \"current\": null,\n                \"iso_currency_code\": null,\n                \"limit\": null,\n                \"unofficial_currency_code\": null\n            },\n            \"email_address\": {\n                \"score\": 0\n            },\n            \"legal_name\": {\n                \"is_business_name_detected\": null,\n                \"is_first_name_or_last_name_match\": null,\n                \"is_nickname_match\": null,\n                \"score\": null\n            },\n            \"mask\": \"9002\",\n            \"name\": \"Plaid Cash Management\",\n            \"official_name\": \"Plaid Growth Cash Management\",\n            \"phone_number\": {\n                \"score\": 0\n            },\n            \"subtype\": \"cash management\",\n            \"type\": \"depository\"\n        },\n        {\n            \"account_id\": \"G1dA9JPZZmFXdVDy4g9DSeKjaA83AXT6MqjM3\",\n            \"address\": {\n                \"is_postal_code_match\": null,\n                \"score\": null\n            },\n            \"balances\": {\n                \"available\": null,\n                \"current\": null,\n                \"iso_currency_code\": null,\n                \"limit\": null,\n                \"unofficial_currency_code\": null\n            },\n            \"email_address\": {\n                \"score\": 0\n            },\n            \"legal_name\": {\n                \"is_business_name_detected\": null,\n                \"is_first_name_or_last_name_match\": null,\n                \"is_nickname_match\": null,\n                \"score\": null\n            },\n            \"mask\": \"9999\",\n            \"name\": \"Plaid Business Credit Card\",\n            \"official_name\": \"Plaid Platinum Small Business Credit Card\",\n            \"phone_number\": {\n                \"score\": 0\n            },\n            \"subtype\": \"credit card\",\n            \"type\": \"credit\"\n        }\n    ],\n    \"item\": {\n        \"available_products\": [\n            \"assets\",\n            \"balance\",\n            \"signal\",\n            \"income_verification\",\n            \"investments\",\n            \"investments_auth\",\n            \"liabilities\",\n            \"recurring_transactions\",\n            \"statements\",\n            \"transfer\"\n        ],\n        \"billed_products\": [\n            \"auth\",\n            \"identity\",\n            \"identity_match\",\n            \"transactions\"\n        ],\n        \"consent_expiration_time\": null,\n        \"error\": null,\n        \"institution_id\": \"ins_109508\",\n        \"institution_name\": \"First Platypus Bank\",\n        \"item_id\": \"qnAMrvVwwQUev6kL5lwkT8XZyP1J9zcdNq7ZM\",\n        \"products\": [\n            \"auth\",\n            \"signal\",\n            \"identity\",\n            \"identity_match\",\n            \"transactions\"\n        ],\n        \"update_type\": \"background\",\n        \"webhook\": \"\"\n    },\n    \"request_id\": \"Dag6nuNsEVAO1fU\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Retrieve verification documents",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"client_id\": \"{{client_id}}\",\r\n  \"secret\": \"{{secret_key}}\",\r\n  \"access_token\": \"{{access_token}}\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base-url}}/identity/documents/uploads/get",
+							"host": [
+								"{{base-url}}"
+							],
+							"path": [
+								"identity",
+								"documents",
+								"uploads",
+								"get"
+							]
+						},
+						"description": "This endpoint allows you to retrieve a list of all uploaded documents associated with a specific access token. The documents might include identity verification files, such as government-issued IDs or other forms of proof submitted via Plaid's identity verification system."
+					},
+					"response": [
+						{
+							"name": "Retrieve uploaded verification documents",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"client_id\": \"{{client_id}}\",\r\n  \"secret\": \"{{secret_key}}\",\r\n  \"access_token\": \"{{access_token}}\"\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base-url}}/identity/documents/uploads/get",
+									"host": [
+										"{{base-url}}"
+									],
+									"path": [
+										"identity",
+										"documents",
+										"uploads",
+										"get"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 25 Nov 2024 10:03:02 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "1452"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "content-encoding",
+									"value": "gzip"
+								},
+								{
+									"key": "vary",
+									"value": "Accept-Encoding"
+								},
+								{
+									"key": "Strict-Transport-Security",
+									"value": "max-age=31536000; includeSubDomains; preload"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "1; mode=block"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"accounts\": [\n        {\n            \"account_id\": \"yBryNwlqqpUGwqlVeJElUgkAz7PV7of46ovnJ\",\n            \"balances\": {\n                \"available\": 100,\n                \"current\": 110,\n                \"iso_currency_code\": \"USD\",\n                \"limit\": null,\n                \"unofficial_currency_code\": null\n            },\n            \"documents\": null,\n            \"mask\": \"0000\",\n            \"name\": \"Plaid Checking\",\n            \"official_name\": \"Plaid Gold Standard 0% Interest Checking\",\n            \"owners\": [],\n            \"persistent_account_id\": \"8cfb8beb89b774ee43b090625f0d61d0814322b43bff984eaf60386e\",\n            \"subtype\": \"checking\",\n            \"type\": \"depository\"\n        },\n        {\n            \"account_id\": \"9B6D1JnrrZUkPwd6bX7dUG4gynApnqs4xkJyX\",\n            \"balances\": {\n                \"available\": 200,\n                \"current\": 210,\n                \"iso_currency_code\": \"USD\",\n                \"limit\": null,\n                \"unofficial_currency_code\": null\n            },\n            \"documents\": null,\n            \"mask\": \"1111\",\n            \"name\": \"Plaid Saving\",\n            \"official_name\": \"Plaid Silver Standard 0.1% Interest Saving\",\n            \"owners\": [],\n            \"persistent_account_id\": \"211a4e5d8361a3afb7a3886362198c7306e00a313b5aa944c20d34b6\",\n            \"subtype\": \"savings\",\n            \"type\": \"depository\"\n        },\n        {\n            \"account_id\": \"vKlydvVXXkCmvkLaM61LTVlrM7bw7duq6g7ey\",\n            \"balances\": {\n                \"available\": null,\n                \"current\": 1000,\n                \"iso_currency_code\": \"USD\",\n                \"limit\": null,\n                \"unofficial_currency_code\": null\n            },\n            \"documents\": null,\n            \"mask\": \"2222\",\n            \"name\": \"Plaid CD\",\n            \"official_name\": \"Plaid Bronze Standard 0.2% Interest CD\",\n            \"owners\": [],\n            \"persistent_account_id\": \"2a01484e1b5ef0b54fbcb89658b2764529bbec94a16f7b95481280a7\",\n            \"subtype\": \"cd\",\n            \"type\": \"depository\"\n        },\n        {\n            \"account_id\": \"L8P6KJZll9TyG9r3zVnrhvbz8KkaKEtkjqzKD\",\n            \"balances\": {\n                \"available\": null,\n                \"current\": 410,\n                \"iso_currency_code\": \"USD\",\n                \"limit\": 2000,\n                \"unofficial_currency_code\": null\n            },\n            \"documents\": null,\n            \"mask\": \"3333\",\n            \"name\": \"Plaid Credit Card\",\n            \"official_name\": \"Plaid Diamond 12.5% APR Interest Credit Card\",\n            \"owners\": [],\n            \"subtype\": \"credit card\",\n            \"type\": \"credit\"\n        },\n        {\n            \"account_id\": \"pGAZKvVwwecG8DwnXlVwU7bNZVxyVXtpobmo5\",\n            \"balances\": {\n                \"available\": 43200,\n                \"current\": 43200,\n                \"iso_currency_code\": \"USD\",\n                \"limit\": null,\n                \"unofficial_currency_code\": null\n            },\n            \"documents\": null,\n            \"mask\": \"4444\",\n            \"name\": \"Plaid Money Market\",\n            \"official_name\": \"Plaid Platinum Standard 1.85% Interest Money Market\",\n            \"owners\": [],\n            \"subtype\": \"money market\",\n            \"type\": \"depository\"\n        },\n        {\n            \"account_id\": \"oAyQqvVEE7fj81QdgxEQIDLnd6bj69foq1wqg\",\n            \"balances\": {\n                \"available\": null,\n                \"current\": 320.76,\n                \"iso_currency_code\": \"USD\",\n                \"limit\": null,\n                \"unofficial_currency_code\": null\n            },\n            \"documents\": null,\n            \"mask\": \"5555\",\n            \"name\": \"Plaid IRA\",\n            \"official_name\": null,\n            \"owners\": [],\n            \"subtype\": \"ira\",\n            \"type\": \"investment\"\n        },\n        {\n            \"account_id\": \"g17dnoV993FBVbXl7WnXfrykonVGneiE8Pk8W\",\n            \"balances\": {\n                \"available\": null,\n                \"current\": 23631.9805,\n                \"iso_currency_code\": \"USD\",\n                \"limit\": null,\n                \"unofficial_currency_code\": null\n            },\n            \"documents\": null,\n            \"mask\": \"6666\",\n            \"name\": \"Plaid 401k\",\n            \"official_name\": null,\n            \"owners\": [],\n            \"subtype\": \"401k\",\n            \"type\": \"investment\"\n        },\n        {\n            \"account_id\": \"8zZAMgGKKQhvNnxj1gJxf1jDJndbnXsW3gE3G\",\n            \"balances\": {\n                \"available\": null,\n                \"current\": 65262,\n                \"iso_currency_code\": \"USD\",\n                \"limit\": null,\n                \"unofficial_currency_code\": null\n            },\n            \"documents\": null,\n            \"mask\": \"7777\",\n            \"name\": \"Plaid Student Loan\",\n            \"official_name\": null,\n            \"owners\": [],\n            \"subtype\": \"student\",\n            \"type\": \"loan\"\n        },\n        {\n            \"account_id\": \"EZ3bmJ4ee6UbaVWd1XxWhGZdBWyaWjs4xrdxP\",\n            \"balances\": {\n                \"available\": null,\n                \"current\": 56302.06,\n                \"iso_currency_code\": \"USD\",\n                \"limit\": null,\n                \"unofficial_currency_code\": null\n            },\n            \"documents\": null,\n            \"mask\": \"8888\",\n            \"name\": \"Plaid Mortgage\",\n            \"official_name\": null,\n            \"owners\": [],\n            \"subtype\": \"mortgage\",\n            \"type\": \"loan\"\n        },\n        {\n            \"account_id\": \"WrkVj3GNN9SBXvjlVPxjfoWaAGBKGXT6ZXaZK\",\n            \"balances\": {\n                \"available\": 6009,\n                \"current\": 6009,\n                \"iso_currency_code\": \"USD\",\n                \"limit\": null,\n                \"unofficial_currency_code\": null\n            },\n            \"documents\": null,\n            \"mask\": \"9001\",\n            \"name\": \"Plaid HSA\",\n            \"official_name\": \"Plaid Cares Health Savings Account\",\n            \"owners\": [],\n            \"subtype\": \"hsa\",\n            \"type\": \"depository\"\n        },\n        {\n            \"account_id\": \"AjK6AJ3NNmUyl4oLkGrohjAzwW8QWgf9raerA\",\n            \"balances\": {\n                \"available\": 12060,\n                \"current\": 12060,\n                \"iso_currency_code\": \"USD\",\n                \"limit\": null,\n                \"unofficial_currency_code\": null\n            },\n            \"documents\": null,\n            \"mask\": \"9002\",\n            \"name\": \"Plaid Cash Management\",\n            \"official_name\": \"Plaid Growth Cash Management\",\n            \"owners\": [],\n            \"subtype\": \"cash management\",\n            \"type\": \"depository\"\n        },\n        {\n            \"account_id\": \"G1dA9JPZZmFXdVDy4g9DSeKjaA83AXT6MqjM3\",\n            \"balances\": {\n                \"available\": 4980,\n                \"current\": 5020,\n                \"iso_currency_code\": \"USD\",\n                \"limit\": 10000,\n                \"unofficial_currency_code\": null\n            },\n            \"documents\": null,\n            \"mask\": \"9999\",\n            \"name\": \"Plaid Business Credit Card\",\n            \"official_name\": \"Plaid Platinum Small Business Credit Card\",\n            \"owners\": [],\n            \"subtype\": \"credit card\",\n            \"type\": \"credit\"\n        }\n    ],\n    \"item\": {\n        \"available_products\": [],\n        \"billed_products\": [\n            \"auth\",\n            \"identity\",\n            \"identity_match\",\n            \"transactions\"\n        ],\n        \"consent_expiration_time\": null,\n        \"error\": null,\n        \"institution_id\": \"ins_109508\",\n        \"institution_name\": \"First Platypus Bank\",\n        \"item_id\": \"qnAMrvVwwQUev6kL5lwkT8XZyP1J9zcdNq7ZM\",\n        \"products\": [\n            \"auth\",\n            \"signal\",\n            \"identity\",\n            \"identity_match\",\n            \"transactions\"\n        ],\n        \"update_type\": \"background\",\n        \"webhook\": \"\"\n    },\n    \"request_id\": \"BGZGXhusfWkfBE5\"\n}"
+						}
+					]
+				}
+			],
+			"description": "The **Identity endpoints** allow you to verify and retrieve detailed information about a user's identity, such as their name, address, and email, directly from their bank accounts. These endpoints help you confirm user identity for compliance, fraud prevention, and onboarding purposes.\n\nUsing the Identity endpoints, you can easily validate that the information provided by a user matches the data on file with their bank, ensuring a secure and accurate experience for users and businesses alike."
+		},
+		{
+			"name": "Balance",
+			"item": [
+				{
+					"name": "Retrieve real-time account balance",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"client_id\": \"{{client_id}}\",\r\n  \"secret\": \"{{secret_key}}\",\r\n  \"access_token\": \"{{access_token}}\"\r\n  }\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base-url}}/accounts/balance/get",
+							"host": [
+								"{{base-url}}"
+							],
+							"path": [
+								"accounts",
+								"balance",
+								"get"
+							]
+						},
+						"description": "This endpoint retrieves real-time balances for each of the accounts associated with an access token. This helps you check the latest account balances, including available and current balances."
+					},
+					"response": [
+						{
+							"name": "Retrieve real-time account balance",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"client_id\": \"{{client_id}}\",\r\n  \"secret\": \"{{secret_key}}\",\r\n  \"access_token\": \"{{access_token}}\"\r\n  }\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base-url}}/accounts/balance/get",
+									"host": [
+										"{{base-url}}"
+									],
+									"path": [
+										"accounts",
+										"balance",
+										"get"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 25 Nov 2024 10:01:47 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "1498"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "content-encoding",
+									"value": "gzip"
+								},
+								{
+									"key": "plaid-version",
+									"value": "2020-09-14"
+								},
+								{
+									"key": "vary",
+									"value": "Accept-Encoding"
+								},
+								{
+									"key": "Strict-Transport-Security",
+									"value": "max-age=31536000; includeSubDomains; preload"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "1; mode=block"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"accounts\": [\n        {\n            \"account_id\": \"yBryNwlqqpUGwqlVeJElUgkAz7PV7of46ovnJ\",\n            \"balances\": {\n                \"available\": 100,\n                \"current\": 110,\n                \"iso_currency_code\": \"USD\",\n                \"limit\": null,\n                \"unofficial_currency_code\": null\n            },\n            \"mask\": \"0000\",\n            \"name\": \"Plaid Checking\",\n            \"official_name\": \"Plaid Gold Standard 0% Interest Checking\",\n            \"persistent_account_id\": \"8cfb8beb89b774ee43b090625f0d61d0814322b43bff984eaf60386e\",\n            \"subtype\": \"checking\",\n            \"type\": \"depository\"\n        },\n        {\n            \"account_id\": \"9B6D1JnrrZUkPwd6bX7dUG4gynApnqs4xkJyX\",\n            \"balances\": {\n                \"available\": 200,\n                \"current\": 210,\n                \"iso_currency_code\": \"USD\",\n                \"limit\": null,\n                \"unofficial_currency_code\": null\n            },\n            \"mask\": \"1111\",\n            \"name\": \"Plaid Saving\",\n            \"official_name\": \"Plaid Silver Standard 0.1% Interest Saving\",\n            \"persistent_account_id\": \"211a4e5d8361a3afb7a3886362198c7306e00a313b5aa944c20d34b6\",\n            \"subtype\": \"savings\",\n            \"type\": \"depository\"\n        },\n        {\n            \"account_id\": \"vKlydvVXXkCmvkLaM61LTVlrM7bw7duq6g7ey\",\n            \"balances\": {\n                \"available\": null,\n                \"current\": 1000,\n                \"iso_currency_code\": \"USD\",\n                \"limit\": null,\n                \"unofficial_currency_code\": null\n            },\n            \"mask\": \"2222\",\n            \"name\": \"Plaid CD\",\n            \"official_name\": \"Plaid Bronze Standard 0.2% Interest CD\",\n            \"persistent_account_id\": \"2a01484e1b5ef0b54fbcb89658b2764529bbec94a16f7b95481280a7\",\n            \"subtype\": \"cd\",\n            \"type\": \"depository\"\n        },\n        {\n            \"account_id\": \"L8P6KJZll9TyG9r3zVnrhvbz8KkaKEtkjqzKD\",\n            \"balances\": {\n                \"available\": null,\n                \"current\": 410,\n                \"iso_currency_code\": \"USD\",\n                \"limit\": 2000,\n                \"unofficial_currency_code\": null\n            },\n            \"mask\": \"3333\",\n            \"name\": \"Plaid Credit Card\",\n            \"official_name\": \"Plaid Diamond 12.5% APR Interest Credit Card\",\n            \"subtype\": \"credit card\",\n            \"type\": \"credit\"\n        },\n        {\n            \"account_id\": \"pGAZKvVwwecG8DwnXlVwU7bNZVxyVXtpobmo5\",\n            \"balances\": {\n                \"available\": 43200,\n                \"current\": 43200,\n                \"iso_currency_code\": \"USD\",\n                \"limit\": null,\n                \"unofficial_currency_code\": null\n            },\n            \"mask\": \"4444\",\n            \"name\": \"Plaid Money Market\",\n            \"official_name\": \"Plaid Platinum Standard 1.85% Interest Money Market\",\n            \"subtype\": \"money market\",\n            \"type\": \"depository\"\n        },\n        {\n            \"account_id\": \"oAyQqvVEE7fj81QdgxEQIDLnd6bj69foq1wqg\",\n            \"balances\": {\n                \"available\": null,\n                \"current\": 320.76,\n                \"iso_currency_code\": \"USD\",\n                \"limit\": null,\n                \"unofficial_currency_code\": null\n            },\n            \"mask\": \"5555\",\n            \"name\": \"Plaid IRA\",\n            \"official_name\": null,\n            \"subtype\": \"ira\",\n            \"type\": \"investment\"\n        },\n        {\n            \"account_id\": \"g17dnoV993FBVbXl7WnXfrykonVGneiE8Pk8W\",\n            \"balances\": {\n                \"available\": null,\n                \"current\": 23631.9805,\n                \"iso_currency_code\": \"USD\",\n                \"limit\": null,\n                \"unofficial_currency_code\": null\n            },\n            \"mask\": \"6666\",\n            \"name\": \"Plaid 401k\",\n            \"official_name\": null,\n            \"subtype\": \"401k\",\n            \"type\": \"investment\"\n        },\n        {\n            \"account_id\": \"8zZAMgGKKQhvNnxj1gJxf1jDJndbnXsW3gE3G\",\n            \"balances\": {\n                \"available\": null,\n                \"current\": 65262,\n                \"iso_currency_code\": \"USD\",\n                \"limit\": null,\n                \"unofficial_currency_code\": null\n            },\n            \"mask\": \"7777\",\n            \"name\": \"Plaid Student Loan\",\n            \"official_name\": null,\n            \"subtype\": \"student\",\n            \"type\": \"loan\"\n        },\n        {\n            \"account_id\": \"EZ3bmJ4ee6UbaVWd1XxWhGZdBWyaWjs4xrdxP\",\n            \"balances\": {\n                \"available\": null,\n                \"current\": 56302.06,\n                \"iso_currency_code\": \"USD\",\n                \"limit\": null,\n                \"unofficial_currency_code\": null\n            },\n            \"mask\": \"8888\",\n            \"name\": \"Plaid Mortgage\",\n            \"official_name\": null,\n            \"subtype\": \"mortgage\",\n            \"type\": \"loan\"\n        },\n        {\n            \"account_id\": \"WrkVj3GNN9SBXvjlVPxjfoWaAGBKGXT6ZXaZK\",\n            \"balances\": {\n                \"available\": 6009,\n                \"current\": 6009,\n                \"iso_currency_code\": \"USD\",\n                \"limit\": null,\n                \"unofficial_currency_code\": null\n            },\n            \"mask\": \"9001\",\n            \"name\": \"Plaid HSA\",\n            \"official_name\": \"Plaid Cares Health Savings Account\",\n            \"subtype\": \"hsa\",\n            \"type\": \"depository\"\n        },\n        {\n            \"account_id\": \"AjK6AJ3NNmUyl4oLkGrohjAzwW8QWgf9raerA\",\n            \"balances\": {\n                \"available\": 12060,\n                \"current\": 12060,\n                \"iso_currency_code\": \"USD\",\n                \"limit\": null,\n                \"unofficial_currency_code\": null\n            },\n            \"mask\": \"9002\",\n            \"name\": \"Plaid Cash Management\",\n            \"official_name\": \"Plaid Growth Cash Management\",\n            \"subtype\": \"cash management\",\n            \"type\": \"depository\"\n        },\n        {\n            \"account_id\": \"G1dA9JPZZmFXdVDy4g9DSeKjaA83AXT6MqjM3\",\n            \"balances\": {\n                \"available\": 4980,\n                \"current\": 5020,\n                \"iso_currency_code\": \"USD\",\n                \"limit\": 10000,\n                \"unofficial_currency_code\": null\n            },\n            \"mask\": \"9999\",\n            \"name\": \"Plaid Business Credit Card\",\n            \"official_name\": \"Plaid Platinum Small Business Credit Card\",\n            \"subtype\": \"credit card\",\n            \"type\": \"credit\"\n        }\n    ],\n    \"item\": {\n        \"available_products\": [\n            \"assets\",\n            \"balance\",\n            \"signal\",\n            \"income_verification\",\n            \"investments\",\n            \"investments_auth\",\n            \"liabilities\",\n            \"recurring_transactions\",\n            \"statements\",\n            \"transfer\"\n        ],\n        \"billed_products\": [\n            \"auth\",\n            \"identity\",\n            \"identity_match\",\n            \"transactions\"\n        ],\n        \"consent_expiration_time\": null,\n        \"error\": null,\n        \"institution_id\": \"ins_109508\",\n        \"institution_name\": \"First Platypus Bank\",\n        \"item_id\": \"qnAMrvVwwQUev6kL5lwkT8XZyP1J9zcdNq7ZM\",\n        \"products\": [\n            \"auth\",\n            \"signal\",\n            \"identity\",\n            \"identity_match\",\n            \"transactions\"\n        ],\n        \"update_type\": \"background\",\n        \"webhook\": \"\"\n    },\n    \"request_id\": \"l1JEXqbWGgLJKez\"\n}"
+						}
+					]
+				}
+			],
+			"description": "The **Balance endpoints** allow you to retrieve real-time information about a user's bank account balances. These endpoints give you access to the available balance, current balance, and any pending transactions for a specific account, helping you manage financial data effectively."
+		},
+		{
+			"name": "Transfers",
+			"item": [
+				{
+					"name": "Initiating Transfers",
+					"item": [
+						{
+							"name": "Create a transfer authorization",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{access_token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"client_id\": \"{{client_id}}\",\r\n  \"secret\": \"{{secret_key}}\",\r\n  \"access_token\": \"{{access_token}}\",\r\n  \"account_id\": \"yBryNwlqqpUGwqlVeJElUgkAz7PV7of46ovnJ\",\r\n  \"type\": \"credit\",\r\n  \"network\": \"ach\",\r\n  \"amount\": \"100.00\",\r\n  \"ach_class\": \"ppd\",\r\n  \"user\": {\r\n    \"legal_name\": \"Jane Doe\",\r\n    \"email_address\": \"jane.doe@example.com\"\r\n  }\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base-url}}/transfer/authorization/create",
+									"host": [
+										"{{base-url}}"
+									],
+									"path": [
+										"transfer",
+										"authorization",
+										"create"
+									]
+								},
+								"description": "This endpoint is used to check whether a transfer can be authorized based on the provided sender and receiver information. It ensures transfers are approved before they are initiated. It mitigates risk by validating account details, amounts, and user information in compliance with Plaid's security standards.  \n  \n**N/B** The transfer authorization will expire if not used after one hour. (You can contact your account manager to change the default authorization lifetime.)"
+							},
+							"response": [
+								{
+									"name": "Create a transfer authorization",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n  \"client_id\": \"{{client_id}}\",\r\n  \"secret\": \"{{secret_key}}\",\r\n  \"access_token\": \"{{access_token}}\",\r\n  \"account_id\": \"yBryNwlqqpUGwqlVeJElUgkAz7PV7of46ovnJ\",\r\n  \"type\": \"credit\",\r\n  \"network\": \"ach\",\r\n  \"amount\": \"100.00\",\r\n  \"ach_class\": \"ppd\",\r\n  \"user\": {\r\n    \"legal_name\": \"Jane Doe\",\r\n    \"email_address\": \"jane.doe@example.com\"\r\n  }\r\n}\r\n",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{base-url}}/transfer/authorization/create",
+											"host": [
+												"{{base-url}}"
+											],
+											"path": [
+												"transfer",
+												"authorization",
+												"create"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Server",
+											"value": "nginx"
+										},
+										{
+											"key": "Date",
+											"value": "Mon, 25 Nov 2024 11:12:23 GMT"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "502"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "content-encoding",
+											"value": "gzip"
+										},
+										{
+											"key": "plaid-version",
+											"value": "2020-09-14"
+										},
+										{
+											"key": "vary",
+											"value": "Accept-Encoding"
+										},
+										{
+											"key": "Strict-Transport-Security",
+											"value": "max-age=31536000; includeSubDomains; preload"
+										},
+										{
+											"key": "X-Content-Type-Options",
+											"value": "nosniff"
+										},
+										{
+											"key": "X-Frame-Options",
+											"value": "DENY"
+										},
+										{
+											"key": "X-XSS-Protection",
+											"value": "1; mode=block"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"authorization\": {\n        \"created\": \"2024-11-25T11:12:22.952392797Z\",\n        \"decision\": \"approved\",\n        \"decision_rationale\": null,\n        \"guarantee_decision\": null,\n        \"guarantee_decision_rationale\": null,\n        \"id\": \"df057e8f-2572-4aea-dd11-39e9381c886f\",\n        \"payment_risk\": null,\n        \"proposed_transfer\": {\n            \"account_id\": \"yBryNwlqqpUGwqlVeJElUgkAz7PV7of46ovnJ\",\n            \"ach_class\": \"ppd\",\n            \"amount\": \"100.00\",\n            \"credit_funds_source\": null,\n            \"funding_account_id\": null,\n            \"iso_currency_code\": \"USD\",\n            \"ledger_id\": \"8bb0b124-f903-442e-81d4-571449e0980e\",\n            \"network\": \"ach\",\n            \"origination_account_id\": \"\",\n            \"originator_client_id\": \"673f1c720203ee001a70d45b\",\n            \"type\": \"credit\",\n            \"user\": {\n                \"address\": null,\n                \"email_address\": \"jane.doe@example.com\",\n                \"legal_name\": \"Jane Doe\",\n                \"phone_number\": null\n            }\n        }\n    },\n    \"request_id\": \"ZyjBWSgataE41Rv\"\n}"
+								}
+							]
+						},
+						{
+							"name": "Cancel a transfer authorization",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"client_id\": \"{{client_id}}\",\r\n  \"secret\": \"{{secret_key}}\",\r\n  \"authorization_id\": \"{{auth_id}}\"\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base-url}}/transfer/authorization/cancel",
+									"host": [
+										"{{base-url}}"
+									],
+									"path": [
+										"transfer",
+										"authorization",
+										"cancel"
+									]
+								},
+								"description": "This endpoint cancels a previously created transfer authorization request. If you decide not to proceed with a transfer after generating its authorization, you can cancel it to prevent any unintended operations."
+							},
+							"response": [
+								{
+									"name": "example response",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n  \"client_id\": \"{{client_id}}\",\r\n  \"secret\": \"{{secret_key}}\",\r\n  \"authorization_id\": \"{{auth_id}}\"\r\n}\r\n",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{base-url}}/transfer/authorization/cancel",
+											"host": [
+												"{{base-url}}"
+											],
+											"path": [
+												"transfer",
+												"authorization",
+												"cancel"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Server",
+											"value": "nginx"
+										},
+										{
+											"key": "Date",
+											"value": "Mon, 25 Nov 2024 11:30:40 GMT"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "61"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "content-encoding",
+											"value": "gzip"
+										},
+										{
+											"key": "plaid-version",
+											"value": "2020-09-14"
+										},
+										{
+											"key": "vary",
+											"value": "Accept-Encoding"
+										},
+										{
+											"key": "Strict-Transport-Security",
+											"value": "max-age=31536000; includeSubDomains; preload"
+										},
+										{
+											"key": "X-Content-Type-Options",
+											"value": "nosniff"
+										},
+										{
+											"key": "X-Frame-Options",
+											"value": "DENY"
+										},
+										{
+											"key": "X-XSS-Protection",
+											"value": "1; mode=block"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"request_id\": \"d2VWkwI10JQQGje\"\n}"
+								}
+							]
+						},
+						{
+							"name": "Create a transfer",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"client_id\": \"{{client_id}}\",\r\n  \"secret\": \"{{secret_key}}\",\r\n  \"access_token\": \"{{access_token}}\",\r\n  \"account_id\": \"{{account_id}}\",\r\n  \"authorization_id\": \"{{auth_id}}\",\r\n  \"amount\": \"50.00\",\r\n  \"description\": \"Monthly sub\"\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base-url}}/transfer/create",
+									"host": [
+										"{{base-url}}"
+									],
+									"path": [
+										"transfer",
+										"create"
+									]
+								},
+								"description": "This endpoint is used to create a transfer request that moves funds from one account to another, either from a user’s account or a business account, after successfully authorizing it. After a transfer has been authorized (using `/transfer/authorization/create`), this endpoint initiates the transfer of the funds from one account to another."
+							},
+							"response": [
+								{
+									"name": "example response",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n  \"client_id\": \"{{client_id}}\",\r\n  \"secret\": \"{{secret_key}}\",\r\n  \"access_token\": \"{{access_token}}\",\r\n  \"account_id\": \"{{account_id}}\",\r\n  \"authorization_id\": \"{{auth_id}}\",\r\n  \"amount\": \"50.00\",\r\n  \"description\": \"Monthly sub\"\r\n}\r\n",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{base-url}}/transfer/create",
+											"host": [
+												"{{base-url}}"
+											],
+											"path": [
+												"transfer",
+												"create"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Server",
+											"value": "nginx"
+										},
+										{
+											"key": "Date",
+											"value": "Mon, 25 Nov 2024 11:50:25 GMT"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "626"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "content-encoding",
+											"value": "gzip"
+										},
+										{
+											"key": "plaid-version",
+											"value": "2020-09-14"
+										},
+										{
+											"key": "vary",
+											"value": "Accept-Encoding"
+										},
+										{
+											"key": "Strict-Transport-Security",
+											"value": "max-age=31536000; includeSubDomains; preload"
+										},
+										{
+											"key": "X-Content-Type-Options",
+											"value": "nosniff"
+										},
+										{
+											"key": "X-Frame-Options",
+											"value": "DENY"
+										},
+										{
+											"key": "X-XSS-Protection",
+											"value": "1; mode=block"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"request_id\": \"MedtLeQIXkaYE4M\",\n    \"transfer\": {\n        \"account_id\": \"yBryNwlqqpUGwqlVeJElUgkAz7PV7of46ovnJ\",\n        \"ach_class\": \"ppd\",\n        \"amount\": \"50.00\",\n        \"authorization_id\": \"df057e8f-2572-4aea-dd11-39e9381c886f\",\n        \"cancellable\": true,\n        \"created\": \"2024-11-25T11:50:25.690391Z\",\n        \"credit_funds_source\": null,\n        \"description\": \"Monthly sub\",\n        \"expected_settlement_date\": null,\n        \"failure_reason\": null,\n        \"funding_account_id\": null,\n        \"guarantee_decision\": null,\n        \"guarantee_decision_rationale\": null,\n        \"id\": \"f40b2bc8-1cf6-0821-080e-37cfa82fcbef\",\n        \"iso_currency_code\": \"USD\",\n        \"ledger_id\": \"8bb0b124-f903-442e-81d4-571449e0980e\",\n        \"metadata\": null,\n        \"network\": \"ach\",\n        \"network_trace_id\": null,\n        \"origination_account_id\": \"\",\n        \"originator_client_id\": \"673f1c720203ee001a70d45b\",\n        \"recurring_transfer_id\": null,\n        \"refunds\": [],\n        \"standard_return_window\": null,\n        \"status\": \"pending\",\n        \"sweep_status\": \"unswept\",\n        \"type\": \"credit\",\n        \"unauthorized_return_window\": null,\n        \"user\": {\n            \"address\": null,\n            \"email_address\": \"jane.doe@example.com\",\n            \"legal_name\": \"Jane Doe\",\n            \"phone_number\": null\n        }\n    }\n}"
+								}
+							]
+						},
+						{
+							"name": "Cancel a transfer",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n   \"client_id\":  \"{{client_id}}\",\r\n   \"secret\": \"{{secret_key}}\",\r\n   \"transfer_id\": \"{{transfer_id}}\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base-url}}/transfer/cancel",
+									"host": [
+										"{{base-url}}"
+									],
+									"path": [
+										"transfer",
+										"cancel"
+									]
+								},
+								"description": "This endpoint allows you to cancel a pending transfer that is in progress but hasn't been finalized yet. It prevents the transfer from being processed further. StartFragmentIf you initiated a transfer using `/transfer/create`, but need to cancel it for any reason, you can use this endpoint to stop the transfer from proceeding."
+							},
+							"response": [
+								{
+									"name": "example request",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n   \"client_id\":  \"{{client_id}}\",\r\n   \"secret\": \"{{secret_key}}\",\r\n   \"transfer_id\": \"{{transfer_id}}\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{base-url}}/transfer/cancel",
+											"host": [
+												"{{base-url}}"
+											],
+											"path": [
+												"transfer",
+												"cancel"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Server",
+											"value": "nginx"
+										},
+										{
+											"key": "Date",
+											"value": "Mon, 25 Nov 2024 12:02:25 GMT"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "61"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "content-encoding",
+											"value": "gzip"
+										},
+										{
+											"key": "plaid-version",
+											"value": "2020-09-14"
+										},
+										{
+											"key": "vary",
+											"value": "Accept-Encoding"
+										},
+										{
+											"key": "Strict-Transport-Security",
+											"value": "max-age=31536000; includeSubDomains; preload"
+										},
+										{
+											"key": "X-Content-Type-Options",
+											"value": "nosniff"
+										},
+										{
+											"key": "X-Frame-Options",
+											"value": "DENY"
+										},
+										{
+											"key": "X-XSS-Protection",
+											"value": "1; mode=block"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"request_id\": \"Sg8mG7MeZQAf3lv\"\n}"
+								}
+							]
+						}
+					],
+					"description": "The **Initiating Transfer endpoints** in Plaid allow you to create, authorize, and manage financial transfers between accounts. These endpoints enable you to initiate ACH transfers, verify user permissions, and cancel transfers if needed."
+				},
+				{
+					"name": "Reading Transfers",
+					"item": [
+						{
+							"name": "New Request",
+							"request": {
+								"method": "GET",
+								"header": []
+							},
+							"response": []
+						}
+					]
+				}
+			],
+			"description": "The **Transfer endpoints** allow you to initiate and manage ACH transfers securely and efficiently. These endpoints cover key functionalities, including creating transfers, authorizing them, canceling transfers, and tracking transfer status."
+		}
+	]
+}
